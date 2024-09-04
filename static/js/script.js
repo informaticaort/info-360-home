@@ -7,10 +7,12 @@ function girarTarjeta(button) {
   tarjeta.classList.toggle("girar");
 }
 
-var datos = fetch("static/data/proyectos.json")
+var urlParams = new URLSearchParams(window.location.search);
+var year = urlParams.get('year');
+
+fetch(`static/data/${year}.json`)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
     datos = data;
   });
 

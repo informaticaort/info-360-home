@@ -1,0 +1,20 @@
+[
+    {
+        "Nombre": "Speechify",
+        "Slogan": "Speechify es una aplicación que busca mejorar la calidad de vida de las personas con discapacidad visual",
+        "Descripcion": "Alma seca busca reducir los desechos de un solo uso generando productos comestibles",
+        "Categoria": "Ciencia, Salud y Medio Ambiente",
+        "Integrantes": "Agustina S., Agustina M., Agustina S., Agustina V.",
+        "Orientación": "Informática",
+        "Id": "NI4A-01"
+    },
+    {
+        "Nombre": "Alma Seca",
+        "Slogan": "Alma seca busca reducir los desechos de un solo uso generando productos comestibles",
+        "Descripcion": "Alma seca busca reducir los desechos de un solo uso generando productos comestibles",
+        "Categoria": "Servicios a la Sociedad",
+        "Integrantes": "Agustina S., Agustina M., Agustina S., Agustina V.",
+        "Orientación": "Informática",
+        "Id": "NI4A-02"
+    }
+]
