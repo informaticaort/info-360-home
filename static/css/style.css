@@ -1,0 +1,408 @@
+body {
+  font-family: "Mukta", sans-serif;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  overflow: hidden;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0em;
+  width:100%;
+}
+
+#logo-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /*min-height: 100vh;*/
+}
+
+#descCard {
+  cursor: pointer;
+  /*padding: 10px 20px;*/
+  padding: 0px 10px;
+}
+#inte {
+  padding: 5px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  /* background-color: #1D1D1B;*/
+}
+
+.navbar.fixed {
+  position: fixed;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+}
+
+.container {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.button-55 {
+  align-self: center;
+  background-color: white;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(90, 230, 167, 0.2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: "Mukta", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: 0.75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-55:hover {
+  box-shadow: rgba(45, 163, 94, 0.3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+/* Estilos para tarjetas */
+.flip-card {
+  background-color: transparent;
+  float: left;
+  width: 100%;
+  max-width: 231px;
+  margin: 12px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 5%;
+}
+
+.flip-card.girar .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flip-card-front {
+  background-color: #bbbbbb00;
+  color: black;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  display: inline;
+}
+
+.Arte {
+  background: rgb(237, 131, 12, 0.02);
+  background: linear-gradient(
+    0deg,
+    rgba(237, 131, 12, 0.4) 0%,
+    rgba(120, 59, 0, 0.4) 100%
+  );
+}
+
+.Sociedad {
+  background: rgb(79, 173, 255, 0.02);
+  background: linear-gradient(
+    0deg,
+    rgba(79, 173, 255, 0.4) 0%,
+    rgba(84, 95, 168, 0.4) 100%
+  );
+}
+
+.Salud {
+  background: rgb(230, 186, 191, 0.2);
+  background: linear-gradient(
+    0deg,
+    rgba(230, 186, 191, 0.4) 0%,
+    rgba(143, 52, 129, 0.4) 100%
+  );
+}
+
+.Negocios {
+  background: rgb(67, 176, 80, 0.2);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 176, 80, 0.4) 0%,
+    rgba(18, 69, 22, 0.4) 100%
+  );
+}
+
+.SinergizadoC{
+  background: rgb(241,201,224);
+background: linear-gradient(0deg, rgba(241,201,224,1) 0%, rgba(176,190,232,1) 100%);
+}
+
+.Todos {
+  background: rgb(219, 226, 0, 0.2);
+  background: linear-gradient(
+    0deg,
+    rgba(218, 226, 0, 0.4) 0%,
+    rgba(99, 101, 12, 0.4) 100%
+  );
+}
+
+.button-Arte {
+  background: rgb(237, 131, 12, 0.02);
+  background: linear-gradient(
+    0deg,
+    rgba(237, 131, 12, 0.4) 0%,
+    rgba(120, 59, 0, 0.4) 100%
+  );
+}
+
+.button-Sociedad {
+  background: rgb(79, 173, 255, 0.02);
+  background: linear-gradient(
+    0deg,
+    rgba(79, 173, 255, 0.4) 0%,
+    rgba(84, 95, 168, 0.4) 100%
+  );
+}
+
+.button-Salud {
+  background: rgb(230, 186, 191, 0.2);
+  background: linear-gradient(
+    0deg,
+    rgba(230, 186, 191, 0.4) 0%,
+    rgba(143, 52, 129, 0.4) 100%
+  );
+}
+
+.button-Negocios {
+  background: rgb(67, 176, 80, 0.2);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 176, 80, 0.4) 0%,
+    rgba(18, 69, 22, 0.4) 100%
+  );
+}
+
+/* Estilos para imágenes dentro de las tarjetas */
+.flip-card img {
+  width: 100%;
+  margin-bottom: -1em;
+}
+
+/* Estilos para texto dentro de las tarjetas */
+.flip-card h2,
+.flip-card p {
+  margin: 0;
+  margin-bottom: 2em;
+}
+
+
+/* Estilos para el botón "Girar" */
+.girar-button {
+  background-color: #513ae618;
+  border-radius: 100px;
+  box-shadow: rgba(163, 44, 187, 0.2) 0 -25px 18px -14px inset,
+    rgba(187, 44, 187, 0.15) 0 1px 2px, rgba(175, 44, 187, 0.15) 0 2px 4px,
+    rgba(187, 44, 177, 0.15) 0 4px 8px,
+    rgba(187, 44, 165, 0.15) 0 8px 16px,
+    rgba(154, 44, 187, 0.15) 0 16px 32px;
+  color: rgb(128, 0, 83);
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Mukta", sans-serif;
+  font-weight: bold;
+  padding: 2px 21px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.girar-button:hover {
+  box-shadow: rgba(163, 44, 187, 0.142) 0 -25px 18px -14px inset,
+    rgba(154, 44, 187, 0.25) 0 1px 2px, rgba(168, 44, 187, 0.25) 0 2px 4px,
+    rgba(149, 44, 187, 0.25) 0 4px 8px,
+    rgba(187, 44, 175, 0.25) 0 8px 16px,
+    rgba(161, 44, 187, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+/* Estilos para el botón "Mostrar Todos" */
+#mostrar-todos-button {
+  display: block;
+  margin: 20px auto;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+  .flip-card {
+    max-width: 80%;
+  }
+
+  .container {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .botones-categorias {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}
+
+/* Estilos CSS para el botón de volver al inicio */
+#scrollToTopButton {
+  background-image: url("/static/archivos/anim/1663176/2012790/backtop.png");
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  display: none;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilos para cuando el botón se encuentra en estado hover (cursor sobre el botón) */
+#scrollToTopButton:hover {
+  background-color: #22451b;
+}
+
+#buscador {
+  text-align: right;
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: right;
+  outline: none;
+  font-family: "Mukta", sans-serif;
+  font-size: 21px;
+  padding-top: 10px;
+}
+
+#buscador:focus {
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.syn-image {
+  position: absolute;
+  bottom: 9px;
+  left: 7px;
+  width: 34px; /* Ajusta el tamaño según tus necesidades */
+  height: 31px; /* Ajusta el tamaño según tus necesidades */
+  background-image: url('/static/archivos/anim/1663176/2012790/logo-default.png'); /* Ruta de la imagen de sinergia */
+  background-size: cover;
+  background-position: center;
+  
+}
