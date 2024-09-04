@@ -10,7 +10,7 @@ function girarTarjeta(button) {
 var urlParams = new URLSearchParams(window.location.search);
 var year = urlParams.get('year');
 
-fetch(`static/data/${year}.json`)
+fetch(`static/data/${year || new Date().getFullYear()}.json`)
   .then((response) => response.json())
   .then((data) => {
     datos = data;
