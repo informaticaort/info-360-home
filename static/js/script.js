@@ -2,6 +2,24 @@ window.onload = function () {
   mostrarTodos();
 };
 
+window.addEventListener("popstate", function () {
+  updateDataAndView();
+});
+
+function updateDataAndView() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var year = urlParams.get('year');
+  
+  fetch(`static/data/${year || new Date().getFullYear()}.json`)
+    .then((response) => response.json())
+    .then((data) => {
+      datos = data;
+      mostrarTodos();
+    });
+}
+
+updateDataAndView();
+
 function girarTarjeta(button) {
   const tarjeta = button.closest(".flip-card");
   tarjeta.classList.toggle("girar");
