@@ -54,7 +54,7 @@ function mostrarCategoria(categoria) {
                       <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
                   </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan.slice(0, 80)}</p>
+                  <p>${item.Slogan?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   ${Sinergizado(item)}
                   </div>
@@ -119,7 +119,7 @@ function mostrarSin(){
                       <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
                   </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan.slice(0, 80)}</p>
+                  <p>${item.Slogan?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   ${Sinergizado(item)}
                   </div>
@@ -184,7 +184,7 @@ function mostrarTodos() {
                         <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
                       </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan.slice(0, 80)}</p>
+                  <p>${item.Slogan?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   ${Sinergizado(item)}
                   </div>
@@ -216,7 +216,7 @@ function truncateDescription(description, wordCount, item) {
     if (words.length <= wordCount) {
       return `<pid="descCard"><b>Descripción:</b> ${description}</p><br>`;
     }
-    let truncatedWords = words.slice(0, wordCount);
+    let truncatedWords = words?.slice(0, wordCount);
     truncatedWords = truncatedWords.join(" ");
 
     return `<p onclick="mostrarDescripcionCompleta('${description}')" title="leer +" id="descCard"><b>Descripción:</b> ${truncatedWords} ...(+)</p>
@@ -294,7 +294,7 @@ function filtrarProyectos(termino) {
                         <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
                       </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan.slice(0, 80)}</p>
+                  <p>${item.Slogan?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   ${Sinergizado(item)}
                   </div>
