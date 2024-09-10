@@ -1,42 +1,52 @@
 window.onload = function () {
-  mostrarTodos();
+  fetchTSV();
 };
 
 window.addEventListener("popstate", function () {
-  updateDataAndView();
+  fetchTSV();
 });
 
-function updateDataAndView() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var year = urlParams.get('year');
-  
-  fetch(`static/data/${year || new Date().getFullYear()}.json`)
-    .then((response) => response.json())
-    .then((data) => {
-      datos = data;
-      mostrarTodos();
-    });
-}
+const tsvUrl =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTG4QwspZOrk3UP6zhZVUcb4uSZxEUZGPE4Pda-WXNfiGYP11rftONqyU9SXJ8tJFBwv0SH-O0v0Py3/pub?gid=1832559583&single=true&output=tsv"; // Reemplaza con la URL de tu archivo TSV
 
-updateDataAndView();
+async function fetchTSV() {
+  try {
+    var loader = document.getElementById("loader");
+    loader.style.display = "block";
+
+    const response = await fetch(tsvUrl);
+    const data = await response.text();
+
+    let rows = data.split("\n").map((line) => line.split("\t"));
+    rows = rows.slice(1, rows.length - 1);
+    
+    datos = rows.map((row) => {
+      return {
+        Id: row[0],
+        Nombre: row[2],
+        Slogan: "Slogan",
+        Descripcion: row[3],
+        Integrantes: row[1],
+        Categoria: row[5],
+      };
+    });
+
+    loader.style.display = "none";
+
+  } catch (error) {
+    console.error("Error al leer el archivo TSV:", error);
+  }
+  mostrarTodos();
+}
 
 function girarTarjeta(button) {
   const tarjeta = button.closest(".flip-card");
   tarjeta.classList.toggle("girar");
 }
 
-var urlParams = new URLSearchParams(window.location.search);
-var year = urlParams.get('year');
-
-fetch(`static/data/${year || new Date().getFullYear()}.json`)
-  .then((response) => response.json())
-  .then((data) => {
-    datos = data;
-  });
-
 function mostrarCategoria(categoria) {
   var resultadoDiv = document.getElementById("resultado");
-  resultadoDiv.innerHTML = ""; 
+  resultadoDiv.innerHTML = "";
 
   var categoriaData = datos.filter(function (item) {
     return item.Categoria === categoria;
@@ -51,7 +61,9 @@ function mostrarCategoria(categoria) {
           <div class="flip-card-inner ${categoria}">
               <div class="flip-card-front ">
                   <div >
-                      <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
+                      <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
+                        item.Id
+                      }.png"  alt="Avatar">
                   </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
@@ -98,12 +110,11 @@ function mostrarCategoria(categoria) {
   }
 }
 
-function mostrarSin(){
-
+function mostrarSin() {
   var resultadoDiv = document.getElementById("resultado");
-  resultadoDiv.innerHTML = ""; 
+  resultadoDiv.innerHTML = "";
 
-   var sinergizzados = datos.filter(function (item) {
+  var sinergizzados = datos.filter(function (item) {
     return item.Sinergizado == "TRUE";
   });
 
@@ -116,7 +127,9 @@ function mostrarSin(){
           <div class="flip-card-inner">
               <div class="flip-card-front SinergizadoC">
                   <div >
-                      <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
+                      <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
+                        item.Id
+                      }.png"  alt="Avatar">
                   </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
@@ -138,28 +151,22 @@ function mostrarSin(){
     });
 
     var botones = document.querySelectorAll(".botones-categorias button");
-    
-    
-      id = "SinergizadosC";
-    
+
+    id = "SinergizadosC";
 
     botones.forEach(function (boton) {
-      boton.classList.remove("Todos")
-      boton.classList.remove("button-Negocios")
-      boton.classList.remove("button-Sociedad")
-      boton.classList.remove("button-Salud")
-      boton.classList.remove("button-Arte")
-      
-      if(boton.id == "Sinergizado"){
-       
+      boton.classList.remove("Todos");
+      boton.classList.remove("button-Negocios");
+      boton.classList.remove("button-Sociedad");
+      boton.classList.remove("button-Salud");
+      boton.classList.remove("button-Arte");
+
+      if (boton.id == "Sinergizado") {
         boton.classList.add("SinergizadoC");
       }
     });
-    
+  }
 }
-}
-
-
 
 function mostrarTodos() {
   var botones = document.querySelectorAll(".botones-categorias button");
@@ -171,7 +178,7 @@ function mostrarTodos() {
     botonSeleccionado.classList.add("Todos");
   }
   var resultadoDiv = document.getElementById("resultado");
-  resultadoDiv.innerHTML = ""; 
+  resultadoDiv.innerHTML = "";
 
   datos.forEach(function (item) {
     var card = document.createElement("div");
@@ -181,22 +188,18 @@ function mostrarTodos() {
           <div class="flip-card-inner ${item.Categoria}">
                   <div class="flip-card-front">
                       <div >
-                        <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
+                        <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
+                          item.Id
+                        }.png"  alt="Avatar">
                       </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   ${Sinergizado(item)}
                   </div>
-                  <div class="flip-card-back .flip-card ${
-                    item.Categoria
-                  }">
+                  <div class="flip-card-back .flip-card ${item.Categoria}">
                           <h3>${item.Nombre}</h3>
-                             ${truncateDescription(
-                               item.Descripcion,
-                               10,
-                               item
-                             )}
+                             ${truncateDescription(item.Descripcion, 10, item)}
                               <p ><b>Integrantes:</b>  ${
                                 item.Integrantes
                               } <br> <b>Categoria:</b> ${item.Categoria}</p>
@@ -211,7 +214,7 @@ function mostrarTodos() {
 }
 
 function truncateDescription(description, wordCount, item) {
-  if (description.length > 100) {
+  if (description?.length > 100) {
     const words = description.split(" ");
     if (words.length <= wordCount) {
       return `<pid="descCard"><b>Descripción:</b> ${description}</p><br>`;
@@ -245,13 +248,12 @@ window.onclick = function (event) {
   }
 };
 
-function Sinergizado(item){
+function Sinergizado(item) {
   if (item.Sinergizado == "TRUE") {
-                    return `<div class="syn-image" title="Sinergizado"></div>`;
-  }else{
-    return "";  
+    return `<div class="syn-image" title="Sinergizado"></div>`;
+  } else {
+    return "";
   }
-                  
 }
 const buscador = document.getElementById("buscador");
 
@@ -291,7 +293,9 @@ function filtrarProyectos(termino) {
               <div class="flip-card-inner">
                   <div class="flip-card-front ${item.Categoria}">
                       <div>
-                        <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${item.Id}.png"  alt="Avatar">
+                        <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
+                          item.Id
+                        }.png"  alt="Avatar">
                       </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
@@ -302,9 +306,7 @@ function filtrarProyectos(termino) {
                       <h3>${item.Nombre}</h3>
                         ${truncateDescription(item.Descripcion, 10, item)}
                       
-                        <p ><b>Integrantes:</b>  ${
-                          item.Integrantes
-                        }
+                        <p ><b>Integrantes:</b>  ${item.Integrantes}
                       
                       <br><b>Categoria:</b> ${item.Categoria}</p>
                       <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
@@ -334,13 +336,16 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
-
-(function(h,o,t,j,a,r){
-  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-  h._hjSettings={hjid:3697742,hjsv:6};
-  a=o.getElementsByTagName('head')[0];
-  r=o.createElement('script');r.async=1;
-  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 3697742, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
   a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
