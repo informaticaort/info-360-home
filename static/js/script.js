@@ -19,7 +19,7 @@ async function fetchTSV() {
 
     let rows = data.split("\n").map((line) => line.split("\t"));
     rows = rows.slice(1, rows.length - 1);
-    
+
     datos = rows.map((row) => {
       return {
         Id: row[0],
@@ -32,7 +32,6 @@ async function fetchTSV() {
     });
 
     loader.style.display = "none";
-
   } catch (error) {
     console.error("Error al leer el archivo TSV:", error);
   }
@@ -48,8 +47,11 @@ function mostrarCategoria(categoria) {
   var resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = "";
 
+  console.log(datos);
+  console.log(categoria);
+
   var categoriaData = datos.filter(function (item) {
-    return item.Categoria === categoria;
+    return item.Categoria.includes(categoria);
   });
 
   if (categoriaData.length > 0) {
@@ -85,25 +87,13 @@ function mostrarCategoria(categoria) {
     });
 
     var botones = document.querySelectorAll(".botones-categorias button");
-    if (categoria == "Servicios a la Sociedad") {
-      id = "Sociedad";
-    }
-    if (categoria == "Negocios") {
-      id = "Negocios";
-    }
-    if (categoria == "Ciencia, Salud y Medio Ambiente") {
-      id = "Salud";
-    }
-    if (categoria == "Arte y Cultura") {
-      id = "Arte";
-    }
 
     botones.forEach(function (boton) {
       boton.classList.remove("button-" + boton.id);
       boton.classList.remove("Todos");
-      boton.classList.remove("SinergizadoC");
+      //boton.classList.remove("SinergizadoC");
     });
-    document.getElementById(id).classList.add("button-" + id);
+    document.getElementById(categoria).classList.add("button-" + id);
   } else {
     resultadoDiv.innerHTML =
       "<p>No hay datos disponibles para esta categoría.</p>";
@@ -114,12 +104,12 @@ function mostrarSin() {
   var resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = "";
 
-  var sinergizzados = datos.filter(function (item) {
+  var sinergizados = datos.filter(function (item) {
     return item.Sinergizado == "TRUE";
   });
 
-  if (sinergizzados.length > 0) {
-    sinergizzados.forEach(function (item) {
+  if (sinergizados.length > 0) {
+    sinergizados.forEach(function (item) {
       var card = document.createElement("div");
       card.classList.add("flip-card");
 
