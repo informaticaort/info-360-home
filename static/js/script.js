@@ -18,7 +18,7 @@ async function fetchTSV() {
     const data = await response.text();
 
     let rows = data.split("\n").map((line) => line.split("\t"));
-    rows = rows.slice(1, rows.length - 1);
+    rows = rows.slice(1, rows.length);
 
     datos = rows.map((row) => {
       return {
@@ -28,6 +28,7 @@ async function fetchTSV() {
         Descripcion: row[3],
         Integrantes: row[1],
         Categoria: row[5],
+        Logo: row[6]
       };
     });
 
@@ -48,7 +49,6 @@ function mostrarCategoria(categoria) {
   resultadoDiv.innerHTML = "";
 
   console.log(datos);
-  console.log(categoria);
 
   var categoriaData = datos.filter(function (item) {
     return item.Categoria.includes(categoria);
@@ -63,9 +63,7 @@ function mostrarCategoria(categoria) {
           <div class="flip-card-inner ${categoria}">
               <div class="flip-card-front ">
                   <div >
-                      <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
-                        item.Id
-                      }.png"  alt="Avatar">
+                      <img src=${item.Logo} alt="Avatar">
                   </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
@@ -93,7 +91,7 @@ function mostrarCategoria(categoria) {
       boton.classList.remove("Todos");
       //boton.classList.remove("SinergizadoC");
     });
-    document.getElementById(categoria).classList.add("button-" + id);
+    document.getElementById(categoria).classList.add("button-" + categoria);
   } else {
     resultadoDiv.innerHTML =
       "<p>No hay datos disponibles para esta categoría.</p>";
@@ -117,9 +115,7 @@ function mostrarSin() {
           <div class="flip-card-inner">
               <div class="flip-card-front SinergizadoC">
                   <div >
-                      <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
-                        item.Id
-                      }.png"  alt="Avatar">
+                      <img src=${item.Logo} alt="Avatar">
                   </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
@@ -178,9 +174,7 @@ function mostrarTodos() {
           <div class="flip-card-inner ${item.Categoria}">
                   <div class="flip-card-front">
                       <div >
-                        <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
-                          item.Id
-                        }.png"  alt="Avatar">
+                        <img src=${item.Logo}  alt="Avatar">
                       </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
@@ -283,9 +277,7 @@ function filtrarProyectos(termino) {
               <div class="flip-card-inner">
                   <div class="flip-card-front ${item.Categoria}">
                       <div>
-                        <img src="https://campus.ort.edu.ar/static/archivos/anim/1663176/2012790/${
-                          item.Id
-                        }.png"  alt="Avatar">
+                        <img src=${item.Logo} alt="Avatar">
                       </div>
                   <h3>${item.Nombre}</h3>
                   <p>${item.Slogan?.slice(0, 80)}</p>
