@@ -24,7 +24,7 @@ async function fetchTSV() {
       return {
         Id: row[0],
         Nombre: row[2],
-        Integrantes: "Integrantes",
+        Integrantes: row[7],
         Descripcion: row[3],
         Categoria: row[5],
         Logo: row[6],
@@ -62,8 +62,8 @@ function mostrarCategoria(categoria) {
                   <div >
                       <img src=${item.Logo} alt="Avatar" id="logo">
                   </div>
-                  
-                  <p>${item.Integrantes?.slice(0, 80)}</p>
+                  <h3>${item.Nombre}</h3>
+                  <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
               <div class="flip-card-back ${item.Categoria}">
@@ -114,7 +114,7 @@ function mostrarTodos() {
                         <img src=${item.Logo}  alt="Avatar" id="logo">
                       </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Integrantes?.slice(0, 80)}</p>
+                  <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
                   <div class="flip-card-back .flip-card ${item.Categoria}">
@@ -189,11 +189,9 @@ function filtrarProyectos(termino) {
 
   const proyectosFiltrados = datos.filter(function (proyecto) {
     const titulo = proyecto.Nombre.toLowerCase();
-    const descripcion = proyecto.Descripcion.toLowerCase();
     const integrantes = proyecto.Integrantes.toLowerCase();
     return (
       titulo.includes(termino) ||
-      descripcion.includes(termino) ||
       integrantes.includes(termino)
     );
   });
@@ -209,7 +207,7 @@ function filtrarProyectos(termino) {
                         <img src=${item.Logo} alt="Avatar" id="logo">
                       </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Integrantes?.slice(0, 80)}</p>
+                  <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
                   <div class="flip-card-back ${item.Categoria}">
