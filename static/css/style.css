@@ -151,7 +151,7 @@ ul li {
   display: inline;
 }
 
-.Arte {
+.Social {
   background: rgb(237, 131, 12, 0.02);
   background: linear-gradient(
     0deg,
@@ -160,7 +160,7 @@ ul li {
   );
 }
 
-.Sociedad {
+.Impacto {
   background: rgb(79, 173, 255, 0.02);
   background: linear-gradient(
     0deg,
@@ -178,7 +178,7 @@ ul li {
   );
 }
 
-.Negocios {
+.E-Commerce {
   background: rgb(67, 176, 80, 0.2);
   background: linear-gradient(
     0deg,
@@ -187,7 +187,7 @@ ul li {
   );
 }
 
-.SinergizadoC {
+.Educación {
   background: rgb(241, 201, 224);
   background: linear-gradient(
     0deg,
@@ -205,7 +205,7 @@ ul li {
   );
 }
 
-.button-Arte {
+.button-Social {
   background: rgb(237, 131, 12, 0.02);
   background: linear-gradient(
     0deg,
@@ -214,7 +214,7 @@ ul li {
   );
 }
 
-.button-Sociedad {
+.button-Educación {
   background: rgb(79, 173, 255, 0.02);
   background: linear-gradient(
     0deg,
@@ -232,12 +232,21 @@ ul li {
   );
 }
 
-.button-Negocios {
+.button-E-Commerce {
   background: rgb(67, 176, 80, 0.2);
   background: linear-gradient(
     0deg,
     rgba(67, 176, 80, 0.4) 0%,
     rgba(18, 69, 22, 0.4) 100%
+  );
+}
+
+.button-Impacto {
+  background: rgb(79, 173, 255, 0.02);
+  background: linear-gradient(
+    0deg,
+    rgba(79, 173, 255, 0.4) 0%,
+    rgba(84, 95, 168, 0.4) 100%
   );
 }
 
@@ -413,4 +422,16 @@ ul li {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+#mg-top {
+  margin-top: 10px;
 }

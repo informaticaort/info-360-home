@@ -24,11 +24,10 @@ async function fetchTSV() {
       return {
         Id: row[0],
         Nombre: row[2],
-        Slogan: "Slogan",
+        Integrantes: "Integrantes",
         Descripcion: row[3],
-        Integrantes: row[1],
         Categoria: row[5],
-        Logo: row[6]
+        Logo: row[6],
       };
     });
 
@@ -48,10 +47,8 @@ function mostrarCategoria(categoria) {
   var resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = "";
 
-  console.log(datos);
-
   var categoriaData = datos.filter(function (item) {
-    return item.Categoria.includes(categoria);
+    return item.Categoria.split(" ")[0].includes(categoria);
   });
 
   if (categoriaData.length > 0) {
@@ -63,20 +60,17 @@ function mostrarCategoria(categoria) {
           <div class="flip-card-inner ${categoria}">
               <div class="flip-card-front ">
                   <div >
-                      <img src=${item.Logo} alt="Avatar">
+                      <img src=${item.Logo} alt="Avatar" id="logo">
                   </div>
-                  <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan?.slice(0, 80)}</p>
+                  
+                  <p>${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
-                  ${Sinergizado(item)}
                   </div>
               <div class="flip-card-back ${item.Categoria}">
-                  <h3>${item.Nombre}</h3>
-                  ${truncateDescription(item.Descripcion, 10, item)}
+                  <h3 id="mg-top">${item.Nombre}</h3>
+                  ${truncateDescription(item.Descripcion, 20, item)}
 
-                 <p ><b>Integrantes:</b>  ${
-                   item.Integrantes
-                 }<br><b>Categoria</b>: ${item.Categoria}</p>
+                 <p><br><b>Categoria</b>: ${item.Categoria}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
               </div>
           </div>
@@ -89,68 +83,11 @@ function mostrarCategoria(categoria) {
     botones.forEach(function (boton) {
       boton.classList.remove("button-" + boton.id);
       boton.classList.remove("Todos");
-      //boton.classList.remove("SinergizadoC");
     });
     document.getElementById(categoria).classList.add("button-" + categoria);
   } else {
     resultadoDiv.innerHTML =
       "<p>No hay datos disponibles para esta categoría.</p>";
-  }
-}
-
-function mostrarSin() {
-  var resultadoDiv = document.getElementById("resultado");
-  resultadoDiv.innerHTML = "";
-
-  var sinergizados = datos.filter(function (item) {
-    return item.Sinergizado == "TRUE";
-  });
-
-  if (sinergizados.length > 0) {
-    sinergizados.forEach(function (item) {
-      var card = document.createElement("div");
-      card.classList.add("flip-card");
-
-      card.innerHTML = `
-          <div class="flip-card-inner">
-              <div class="flip-card-front SinergizadoC">
-                  <div >
-                      <img src=${item.Logo} alt="Avatar">
-                  </div>
-                  <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan?.slice(0, 80)}</p>
-                  <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
-                  ${Sinergizado(item)}
-                  </div>
-              <div class="flip-card-back ${item.Categoria}">
-                  <h3>${item.Nombre}</h3>
-                  ${truncateDescription(item.Descripcion, 10, item)}
-
-                 <p ><b>Integrantes:</b>  ${
-                   item.Integrantes
-                 }<br><b>Categoria</b>: ${item.Categoria}</p>
-                  <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
-              </div>
-          </div>
-      `;
-      resultadoDiv.appendChild(card);
-    });
-
-    var botones = document.querySelectorAll(".botones-categorias button");
-
-    id = "SinergizadosC";
-
-    botones.forEach(function (boton) {
-      boton.classList.remove("Todos");
-      boton.classList.remove("button-Negocios");
-      boton.classList.remove("button-Sociedad");
-      boton.classList.remove("button-Salud");
-      boton.classList.remove("button-Arte");
-
-      if (boton.id == "Sinergizado") {
-        boton.classList.add("SinergizadoC");
-      }
-    });
   }
 }
 
@@ -174,19 +111,16 @@ function mostrarTodos() {
           <div class="flip-card-inner ${item.Categoria}">
                   <div class="flip-card-front">
                       <div >
-                        <img src=${item.Logo}  alt="Avatar">
+                        <img src=${item.Logo}  alt="Avatar" id="logo">
                       </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan?.slice(0, 80)}</p>
+                  <p>${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
-                  ${Sinergizado(item)}
                   </div>
                   <div class="flip-card-back .flip-card ${item.Categoria}">
-                          <h3>${item.Nombre}</h3>
-                             ${truncateDescription(item.Descripcion, 10, item)}
-                              <p ><b>Integrantes:</b>  ${
-                                item.Integrantes
-                              } <br> <b>Categoria:</b> ${item.Categoria}</p>
+                          <h3 id="mg-top">${item.Nombre}</h3>
+                             ${truncateDescription(item.Descripcion, 20, item)}
+                              <p><br> <b>Categoria:</b> ${item.Categoria}</p>
                         
                           <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
@@ -201,28 +135,30 @@ function truncateDescription(description, wordCount, item) {
   if (description?.length > 100) {
     const words = description.split(" ");
     if (words.length <= wordCount) {
-      return `<pid="descCard"><b>Descripción:</b> ${description}</p><br>`;
+      return `<pid="descCard">${description}</p><br>`;
     }
     let truncatedWords = words?.slice(0, wordCount);
     truncatedWords = truncatedWords.join(" ");
 
-    return `<p onclick="mostrarDescripcionCompleta('${description}')" title="leer +" id="descCard"><b>Descripción:</b> ${truncatedWords} ...(+)</p>
+    return `<p onclick="mostrarDescripcionCompleta('${description}')" title="leer +" id="descCard">${truncatedWords} ...(+)</p>
   
   `;
   } else {
-    return `<p id="descCard"><b>Descripción:</b> ${description}</p><br>`;
+    return `<p id="descCard">${description}</p><br>`;
   }
 }
 
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 var modalParagraph = document.getElementById("modalParagraph");
+var modalImage = document.getElementById("modalImage");
 var span = document.getElementsByClassName("close")[0];
 
 function mostrarDescripcionCompleta(descripcion) {
   modal.style.display = "block";
   modalParagraph.textContent = descripcion;
 }
+
 span.onclick = function () {
   modal.style.display = "none";
 };
@@ -232,13 +168,6 @@ window.onclick = function (event) {
   }
 };
 
-function Sinergizado(item) {
-  if (item.Sinergizado == "TRUE") {
-    return `<div class="syn-image" title="Sinergizado"></div>`;
-  } else {
-    return "";
-  }
-}
 const buscador = document.getElementById("buscador");
 
 buscador.addEventListener("input", function () {
@@ -277,20 +206,17 @@ function filtrarProyectos(termino) {
               <div class="flip-card-inner">
                   <div class="flip-card-front ${item.Categoria}">
                       <div>
-                        <img src=${item.Logo} alt="Avatar">
+                        <img src=${item.Logo} alt="Avatar" id="logo">
                       </div>
                   <h3>${item.Nombre}</h3>
-                  <p>${item.Slogan?.slice(0, 80)}</p>
+                  <p>${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
-                  ${Sinergizado(item)}
                   </div>
                   <div class="flip-card-back ${item.Categoria}">
-                      <h3>${item.Nombre}</h3>
-                        ${truncateDescription(item.Descripcion, 10, item)}
+                      <h3 id="mg-top">${item.Nombre}</h3>
+                        ${truncateDescription(item.Descripcion, 20, item)}
                       
-                        <p ><b>Integrantes:</b>  ${item.Integrantes}
-                      
-                      <br><b>Categoria:</b> ${item.Categoria}</p>
+                        <p><br><b>Categoria:</b> ${item.Categoria}</p>
                       <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
               </div>
