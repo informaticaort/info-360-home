@@ -322,7 +322,7 @@ ul li {
 }
 
 #scrollToTopButton {
-  background-image: url("/static/archivos/anim/1663176/2012790/backtop.png");
+  background-image: url("static/archivos/anim/1663176/2012790/backtop.png");
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -398,7 +398,7 @@ ul li {
   left: 7px;
   width: 34px; 
   height: 31px;
-  background-image: url("/static/archivos/anim/1663176/2012790/logo-default.png");
+  background-image: url("static/archivos/anim/1663176/2012790/logo-default.png");
   background-size: cover;
   background-position: center;
 }
