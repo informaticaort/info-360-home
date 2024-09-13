@@ -70,7 +70,7 @@ function mostrarCategoria(categoria) {
                   <h3 id="mg-top">${item.Nombre}</h3>
                   ${truncateDescription(item.Descripcion, 20, item)}
 
-                 <p><br><b>Categoria</b>: ${item.Categoria}</p>
+                 <p><b>Categoria</b>: ${item.Categoria}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
               </div>
           </div>
@@ -120,7 +120,7 @@ function mostrarTodos() {
                   <div class="flip-card-back .flip-card ${item.Categoria}">
                           <h3 id="mg-top">${item.Nombre}</h3>
                              ${truncateDescription(item.Descripcion, 20, item)}
-                              <p><br> <b>Categoria:</b> ${item.Categoria}</p>
+                              <p><b>Categoria:</b> ${item.Categoria}</p>
                         
                           <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
@@ -216,7 +216,7 @@ function filtrarProyectos(termino) {
                       <h3 id="mg-top">${item.Nombre}</h3>
                         ${truncateDescription(item.Descripcion, 20, item)}
                       
-                        <p><br><b>Categoria:</b> ${item.Categoria}</p>
+                        <p><b>Categoria:</b> ${item.Categoria}</p>
                       <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
               </div>
