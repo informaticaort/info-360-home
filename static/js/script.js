@@ -23,6 +23,7 @@ async function fetchTSV() {
     datos = rows.map((row) => {
       return {
         Id: row[0],
+        Curso: row[1],
         Nombre: row[2],
         Integrantes: row[7],
         Descripcion: row[3],
@@ -30,6 +31,8 @@ async function fetchTSV() {
         Logo: row[6],
       };
     });
+
+    console.log("Datos cargados:", datos);
 
     loader.style.display = "none";
   } catch (error) {
@@ -63,12 +66,13 @@ function mostrarCategoria(categoria) {
                       <img src=${item.Logo} alt="Avatar" id="logo">
                   </div>
                   <h3>${item.Nombre}</h3>
+                  <p id="curso">${item.Curso?.slice(0, 80)}</p>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
               <div class="flip-card-back ${item.Categoria}">
                   <h3 id="mg-top">${item.Nombre}</h3>
-                  ${truncateDescription(item.Descripcion, 20, item)}
+                  ${truncateDescription(item.Descripcion, 25, item)}
 
                  <p><b>Categoria</b>: ${item.Categoria}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
@@ -114,13 +118,14 @@ function mostrarTodos() {
                         <img src=${item.Logo}  alt="Avatar" id="logo">
                       </div>
                   <h3>${item.Nombre}</h3>
+                  <p id="curso">${item.Curso?.slice(0, 80)}</p>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
                   <div class="flip-card-back .flip-card ${item.Categoria}">
                           <h3 id="mg-top">${item.Nombre}</h3>
-                             ${truncateDescription(item.Descripcion, 20, item)}
-                              <p><b>Categoria:</b> ${item.Categoria}</p>
+                             ${truncateDescription(item.Descripcion, 25, item)}
+                              <p id="mg-bottom"><b>Categoria:</b> ${item.Categoria}</p>
                         
                           <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
@@ -135,7 +140,7 @@ function truncateDescription(description, wordCount, item) {
   if (description?.length > 100) {
     const words = description.split(" ");
     if (words.length <= wordCount) {
-      return `<pid="descCard">${description}</p><br>`;
+      return `<p id="descCard">${description}</p><br>`;
     }
     let truncatedWords = words?.slice(0, wordCount);
     truncatedWords = truncatedWords.join(" ");
@@ -207,14 +212,15 @@ function filtrarProyectos(termino) {
                         <img src=${item.Logo} alt="Avatar" id="logo">
                       </div>
                   <h3>${item.Nombre}</h3>
+                  <p id="curso">${item.Curso?.slice(0, 80)}</p>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
                   <div class="flip-card-back ${item.Categoria}">
                       <h3 id="mg-top">${item.Nombre}</h3>
-                        ${truncateDescription(item.Descripcion, 20, item)}
+                        ${truncateDescription(item.Descripcion, 25, item)}
                       
-                        <p><b>Categoria:</b> ${item.Categoria}</p>
+                        <p id="mg-bottom"><b>Categoria:</b> ${item.Categoria}</p>
                       <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
               </div>
