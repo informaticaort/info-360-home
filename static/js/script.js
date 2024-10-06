@@ -88,7 +88,7 @@ function mostrarCategoria(categoria) {
       boton.classList.remove("button-" + boton.id);
       boton.classList.remove("Todos");
     });
-    document.getElementById(categoria).classList.add("button-" + categoria);
+    document.getElementById(categoria).classList.add(seleccionado);
   } else {
     resultadoDiv.innerHTML =
       "<p>No hay datos disponibles para esta categoría.</p>";
@@ -102,7 +102,7 @@ function mostrarTodos() {
   });
   var botonSeleccionado = document.getElementById("Todos");
   if (botonSeleccionado) {
-    botonSeleccionado.classList.add("Todos");
+    botonSeleccionado.classList.add("seleccionado");
   }
   var resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = "";

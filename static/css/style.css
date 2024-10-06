@@ -70,9 +70,8 @@ h3 {
   background-position: 0 90%;
   background-repeat: repeat no-repeat;
   background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
+  border-radius: 999px;
+  border: 2px solid #026970;
   box-shadow: rgba(90, 230, 167, 0.2) 15px 28px 25px -18px;
   box-sizing: border-box;
   cursor: pointer;
@@ -84,10 +83,6 @@ h3 {
   padding: 0.75rem;
   text-decoration: none;
   transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -152,104 +147,11 @@ ul li {
   display: inline;
 }
 
-.Social {
-  background: rgb(237, 131, 12, 0.02);
-  background: linear-gradient(
-    0deg,
-    rgba(237, 131, 12, 0.4) 0%,
-    rgba(120, 59, 0, 0.4) 100%
-  );
+.seleccionado {
+  color: white;
+  background-color: #026970;
 }
 
-.Impacto {
-  background: rgb(79, 173, 255, 0.02);
-  background: linear-gradient(
-    0deg,
-    rgba(79, 173, 255, 0.4) 0%,
-    rgba(84, 95, 168, 0.4) 100%
-  );
-}
-
-.Salud {
-  background: rgb(230, 186, 191, 0.2);
-  background: linear-gradient(
-    0deg,
-    rgba(230, 186, 191, 0.4) 0%,
-    rgba(143, 52, 129, 0.4) 100%
-  );
-}
-
-.E-Commerce {
-  background: rgb(67, 176, 80, 0.2);
-  background: linear-gradient(
-    0deg,
-    rgba(67, 176, 80, 0.4) 0%,
-    rgba(18, 69, 22, 0.4) 100%
-  );
-}
-
-.Educación {
-  background: rgb(241, 201, 224);
-  background: linear-gradient(
-    0deg,
-    rgba(241, 201, 224, 1) 0%,
-    rgba(176, 190, 232, 1) 100%
-  );
-}
-
-.Todos {
-  background: rgb(219, 226, 0, 0.2);
-  background: linear-gradient(
-    0deg,
-    rgba(218, 226, 0, 0.4) 0%,
-    rgba(99, 101, 12, 0.4) 100%
-  );
-}
-
-.button-Social {
-  background: rgb(237, 131, 12, 0.02);
-  background: linear-gradient(
-    0deg,
-    rgba(237, 131, 12, 0.4) 0%,
-    rgba(120, 59, 0, 0.4) 100%
-  );
-}
-
-.button-Educación {
-  background: rgb(79, 173, 255, 0.02);
-  background: linear-gradient(
-    0deg,
-    rgba(79, 173, 255, 0.4) 0%,
-    rgba(84, 95, 168, 0.4) 100%
-  );
-}
-
-.button-Salud {
-  background: rgb(230, 186, 191, 0.2);
-  background: linear-gradient(
-    0deg,
-    rgba(230, 186, 191, 0.4) 0%,
-    rgba(143, 52, 129, 0.4) 100%
-  );
-}
-
-.button-E-Commerce {
-  background: rgb(67, 176, 80, 0.2);
-  background: linear-gradient(
-    0deg,
-    rgba(67, 176, 80, 0.4) 0%,
-    rgba(18, 69, 22, 0.4) 100%
-  );
-}
-
-.button-Impacto {
-  background: rgb(79, 173, 255, 0.02);
-  background: linear-gradient(
-    0deg,
-    rgba(79, 173, 255, 0.4) 0%,
-    rgba(84, 95, 168, 0.4) 100%
-  );
-}
 
 .flip-card img {
   width: 100%;
@@ -342,17 +244,19 @@ ul li {
 #buscador {
   text-align: right;
   border: none;
-  border-bottom: 1px solid #000;
-  text-align: right;
+  border-radius: 10px;
+  border: 2px solid #026970;
+  text-align: left;
   outline: none;
   font-family: "Mukta", sans-serif;
   font-size: 21px;
-  padding-top: 10px;
+  padding: 0.2%;
+  padding-left: 0.5%;
 }
 
 #buscador:focus {
   border: none;
-  border-bottom: 1px solid #000;
+  border: 2px solid #026970;
 }
 
 .modal {
