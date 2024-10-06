@@ -62,11 +62,15 @@ function mostrarCategoria(categoria) {
       card.innerHTML = `
           <div class="flip-card-inner ${categoria}">
               <div class="flip-card-front ">
+                  <div class="curso-container">
+                    <div class="curso-position ${categoria}-background">
+                      <p id="curso">${item.Curso?.slice(0, 80)}</p>
+                    </div>
+                  </div>
                   <div >
                       <img src=${item.Logo} alt="Avatar" id="logo">
                   </div>
                   <h3>${item.Nombre}</h3>
-                  <p id="curso">${item.Curso?.slice(0, 80)}</p>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
                   </div>
