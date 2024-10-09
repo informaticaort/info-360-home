@@ -60,7 +60,7 @@ function mostrarCategoria(categoria) {
       card.classList.add("flip-card");
 
       card.innerHTML = `
-          <div class="flip-card-inner ${categoria}">
+          <div class="flip-card-inner ${item.Categoria}">
               <div class="flip-card-front ">
                   <div class="curso-container">
                     <div class="curso-position ${categoria}-background">
@@ -72,14 +72,16 @@ function mostrarCategoria(categoria) {
                   </div>
                   <h3>${item.Nombre}</h3>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
-                  <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
+                  <div class="ubicacion-boton">
+                  <button class="girar-button ${categoria}-background" onclick="girarTarjeta(this)">+</button>
+                  </div>
                   </div>
               <div class="flip-card-back ${item.Categoria}">
                   <h3 id="mg-top">${item.Nombre}</h3>
                   ${truncateDescription(item.Descripcion, 25, item)}
 
                  <p><b>Categoria</b>: ${item.Categoria}</p>
-                  <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
+                  <button class="girar-button ${categoria}-background circular" onclick="girarTarjeta(this)">Volver</button>
               </div>
           </div>
       `;
@@ -91,8 +93,10 @@ function mostrarCategoria(categoria) {
     botones.forEach(function (boton) {
       boton.classList.remove("button-" + boton.id);
       boton.classList.remove("Todos");
+      boton.classList.remove("seleccionado");
     });
-    document.getElementById(categoria).classList.add(seleccionado);
+    console.log("a");
+    document.getElementById(categoria).classList.add("seleccionado");
   } else {
     resultadoDiv.innerHTML =
       "<p>No hay datos disponibles para esta categoría.</p>";
@@ -115,27 +119,33 @@ function mostrarTodos() {
     var card = document.createElement("div");
     var card = document.createElement("div");
     card.classList.add("flip-card");
+    console.log(item.Categoria);
     card.innerHTML = `
           <div class="flip-card-inner ${item.Categoria}">
-                  <div class="flip-card-front">
-                      <div >
-                        <img src=${item.Logo}  alt="Avatar" id="logo">
-                      </div>
+              <div class="flip-card-front ">
+                  <div class="curso-container">
+                    <div class="curso-position ${item.Categoria}-background">
+                      <p id="curso">${item.Curso?.slice(0, 80)}</p>
+                    </div>
+                  </div>
+                  <div >
+                      <img src=${item.Logo} alt="Avatar" id="logo">
+                  </div>
                   <h3>${item.Nombre}</h3>
-                  <p id="curso">${item.Curso?.slice(0, 80)}</p>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
-                  <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
+                  <div class="ubicacion-boton">
+                  <button class="girar-button ${item.Categoria}-background" onclick="girarTarjeta(this)">+</button>
                   </div>
-                  <div class="flip-card-back .flip-card ${item.Categoria}">
-                          <h3 id="mg-top">${item.Nombre}</h3>
-                             ${truncateDescription(item.Descripcion, 25, item)}
-                              <p id="mg-bottom"><b>Categoria:</b> ${item.Categoria}</p>
-                        
-                          <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
-                  
+              <div class="flip-card-back ${item.Categoria}">
+                  <h3 id="mg-top">${item.Nombre}</h3>
+                  ${truncateDescription(item.Descripcion, 25, item)}
+
+                 <p><b>Categoria</b>: ${item.Categoria}</p>
+                  <button class="girar-button ${item.Categoria}-background circular" onclick="girarTarjeta(this)">Volver</button>
               </div>
-          `;
+          </div>
+      `;
     resultadoDiv.appendChild(card);
   });
 }
@@ -149,7 +159,7 @@ function truncateDescription(description, wordCount, item) {
     let truncatedWords = words?.slice(0, wordCount);
     truncatedWords = truncatedWords.join(" ");
 
-    return `<p onclick="mostrarDescripcionCompleta('${description}')" title="leer +" id="descCard">${truncatedWords} ...(+)</p>
+    return `<p onclick="mostrarDescripcionCompleta('${description}')" title="leer +" id="descCard">${truncatedWords} ... <b>[+]</b></p>
   
   `;
   } else {
