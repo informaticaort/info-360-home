@@ -351,7 +351,7 @@ ul li {
 .Social {
   border: 7px solid rgba(120, 59, 0, 0.4);
 }
-.Impacto {
+.ImpactoSocial {
   border: 7px solid rgba(84, 95, 168, 0.4);
 }
 .Salud {
@@ -367,7 +367,7 @@ ul li {
 .Social-background {
   background-color: rgba(120, 59, 0, 0.4);
 }
-.Impacto-background {
+.ImpactoSocial-background {
   background-color: rgba(84, 95, 168, 0.4);
 }
 .Salud-background {

@@ -58,12 +58,12 @@ function mostrarCategoria(categoria) {
     categoriaData.forEach(function (item) {
       var card = document.createElement("div");
       card.classList.add("flip-card");
-
+      let cat = item.Categoria.replace(/ /g, "");
       card.innerHTML = `
-          <div class="flip-card-inner ${item.Categoria}">
+          <div class="flip-card-inner ${cat}">
               <div class="flip-card-front ">
                   <div class="curso-container">
-                    <div class="curso-position ${categoria}-background">
+                    <div class="curso-position ${cat}-background">
                       <p id="curso">${item.Curso?.slice(0, 80)}</p>
                     </div>
                   </div>
@@ -73,15 +73,15 @@ function mostrarCategoria(categoria) {
                   <h3>${item.Nombre}</h3>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <div class="ubicacion-boton">
-                  <button class="girar-button ${categoria}-background" onclick="girarTarjeta(this)">+</button>
+                  <button class="girar-button ${cat}-background" onclick="girarTarjeta(this)">+</button>
                   </div>
                   </div>
-              <div class="flip-card-back ${item.Categoria}">
+              <div class="flip-card-back ${cat}">
                   <h3 id="mg-top">${item.Nombre}</h3>
                   ${truncateDescription(item.Descripcion, 25, item)}
 
                  <p><b>Categoria</b>: ${item.Categoria}</p>
-                  <button class="girar-button ${categoria}-background circular" onclick="girarTarjeta(this)">Volver</button>
+                  <button class="girar-button ${cat}-background circular" onclick="girarTarjeta(this)">Volver</button>
               </div>
           </div>
       `;
@@ -119,12 +119,12 @@ function mostrarTodos() {
     var card = document.createElement("div");
     var card = document.createElement("div");
     card.classList.add("flip-card");
-    console.log(item.Categoria);
+    let cat = item.Categoria.replace(/ /g, "");
     card.innerHTML = `
-          <div class="flip-card-inner ${item.Categoria}">
+          <div class="flip-card-inner ${cat}">
               <div class="flip-card-front ">
                   <div class="curso-container">
-                    <div class="curso-position ${item.Categoria}-background">
+                    <div class="curso-position ${cat}-background">
                       <p id="curso">${item.Curso?.slice(0, 80)}</p>
                     </div>
                   </div>
@@ -134,15 +134,15 @@ function mostrarTodos() {
                   <h3>${item.Nombre}</h3>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
                   <div class="ubicacion-boton">
-                  <button class="girar-button ${item.Categoria}-background" onclick="girarTarjeta(this)">+</button>
+                  <button class="girar-button ${cat}-background" onclick="girarTarjeta(this)">+</button>
                   </div>
                   </div>
-              <div class="flip-card-back ${item.Categoria}">
+              <div class="flip-card-back ${cat}">
                   <h3 id="mg-top">${item.Nombre}</h3>
                   ${truncateDescription(item.Descripcion, 25, item)}
 
                  <p><b>Categoria</b>: ${item.Categoria}</p>
-                  <button class="girar-button ${item.Categoria}-background circular" onclick="girarTarjeta(this)">Volver</button>
+                  <button class="girar-button ${cat}-background circular" onclick="girarTarjeta(this)">Volver</button>
               </div>
           </div>
       `;
