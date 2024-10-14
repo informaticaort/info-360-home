@@ -109,7 +109,7 @@ h3 {
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  border-radius: 5%;
+  border-radius: 20px;
 }
 
 .flip-card.girar .flip-card-inner {
@@ -123,6 +123,7 @@ h3 {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   border-radius: 5%;
   display: flex;
   flex-wrap: wrap;
@@ -185,6 +186,7 @@ ul li {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  border-end-end-radius: 13px;
   z-index: 1;
 }
 .ubicacion-boton{
@@ -387,6 +389,7 @@ ul li {
   width: 30%;
   height: 100%;
   border-end-end-radius: 10px;
+  border-start-start-radius: 13px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -76,7 +76,7 @@ function mostrarCategoria(categoria) {
                   <button class="girar-button ${cat}-background" onclick="girarTarjeta(this)">+</button>
                   </div>
                   </div>
-              <div class="flip-card-back ${cat}">
+              <div class="flip-card-back">
                   <h3 id="mg-top">${item.Nombre}</h3>
                   ${truncateDescription(item.Descripcion, 25, item)}
 
@@ -137,7 +137,7 @@ function mostrarTodos() {
                   <button class="girar-button ${cat}-background" onclick="girarTarjeta(this)">+</button>
                   </div>
                   </div>
-              <div class="flip-card-back ${cat}">
+              <div class="flip-card-back">
                   <h3 id="mg-top">${item.Nombre}</h3>
                   ${truncateDescription(item.Descripcion, 25, item)}
 
@@ -219,26 +219,33 @@ function filtrarProyectos(termino) {
     proyectosFiltrados.forEach(function (item) {
       var card = document.createElement("div");
       card.classList.add("flip-card");
-      card.innerHTML = `
-              <div class="flip-card-inner">
-                  <div class="flip-card-front ${item.Categoria}">
-                      <div>
-                        <img src=${item.Logo} alt="Avatar" id="logo">
-                      </div>
+      let cat = item.Categoria.replace(/ /g, "");
+    card.innerHTML = `
+          <div class="flip-card-inner ${cat}">
+              <div class="flip-card-front ">
+                  <div class="curso-container">
+                    <div class="curso-position ${cat}-background">
+                      <p id="curso">${item.Curso?.slice(0, 80)}</p>
+                    </div>
+                  </div>
+                  <div >
+                      <img src=${item.Logo} alt="Avatar" id="logo">
+                  </div>
                   <h3>${item.Nombre}</h3>
-                  <p id="curso">${item.Curso?.slice(0, 80)}</p>
                   <p id="integrantes">${item.Integrantes?.slice(0, 80)}</p>
-                  <button class="girar-button" onclick="girarTarjeta(this)">+ Detalles</button>
+                  <div class="ubicacion-boton">
+                  <button class="girar-button ${cat}-background" onclick="girarTarjeta(this)">+</button>
                   </div>
-                  <div class="flip-card-back ${item.Categoria}">
-                      <h3 id="mg-top">${item.Nombre}</h3>
-                        ${truncateDescription(item.Descripcion, 25, item)}
-                      
-                        <p id="mg-bottom"><b>Categoria:</b> ${item.Categoria}</p>
-                      <button class="girar-button" onclick="girarTarjeta(this)">Volver</button>
                   </div>
+              <div class="flip-card-back">
+                  <h3 id="mg-top">${item.Nombre}</h3>
+                  ${truncateDescription(item.Descripcion, 25, item)}
+
+                 <p><b>Categoria</b>: ${item.Categoria}</p>
+                  <button class="girar-button ${cat}-background circular" onclick="girarTarjeta(this)">Volver</button>
               </div>
-          `;
+          </div>
+      `;
       resultadoDiv.appendChild(card);
     });
   } else {
