@@ -209,9 +209,11 @@ function filtrarProyectos(termino) {
   const proyectosFiltrados = datos.filter(function (proyecto) {
     const titulo = proyecto.Nombre.toLowerCase();
     const integrantes = proyecto.Integrantes.toLowerCase();
+    const curso = proyecto.Curso.toLowerCase();
     return (
       titulo.includes(termino) ||
-      integrantes.includes(termino)
+      integrantes.includes(termino) ||
+      curso.includes(termino)
     );
   });
 
@@ -220,7 +222,7 @@ function filtrarProyectos(termino) {
       var card = document.createElement("div");
       card.classList.add("flip-card");
       let cat = item.Categoria.replace(/ /g, "");
-    card.innerHTML = `
+      card.innerHTML = `
           <div class="flip-card-inner ${cat}">
               <div class="flip-card-front ">
                   <div class="curso-container">
