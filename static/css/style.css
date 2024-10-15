@@ -70,7 +70,7 @@ h3 {
   background-position: 0 90%;
   background-repeat: repeat no-repeat;
   background-size: 4px 3px;
-  border-radius: 999px;
+  border-radius: 60px;
   border: 2px solid #026970;
   box-shadow: rgba(90, 230, 167, 0.2) 15px 28px 25px -18px;
   box-sizing: border-box;
@@ -146,6 +146,10 @@ h3 {
   justify-content: space-evenly;
 }
 
+.flip-card:hover {
+  transform: scale(1.02);
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -182,7 +186,7 @@ ul li {
   text-decoration: none;
   transition: all 250ms;
   border: 0;
-  font-size: 2vw;
+  font-size: 20px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
