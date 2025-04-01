@@ -209,6 +209,13 @@ ul li {
   margin: 20px auto;
 }
 
+.botones-categorias {
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 768px) {
   .flip-card {
     max-width: 80%;
@@ -219,13 +226,6 @@ ul li {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-  }
-
-  .botones-categorias {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
   }
 }
 
@@ -249,6 +249,7 @@ ul li {
 }
 
 #buscador {
+  display: none;
   text-align: right;
   border: none;
   border-radius: 10px;

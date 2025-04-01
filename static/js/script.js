@@ -28,7 +28,6 @@ async function fetchTSV() {
         myParam < 1900 || myParam > 2100
           ? "<h2>El año que ingresaste no es válido.</h2>"
           : "<h2>No hay registros del año " + myParam + ".</h2>";
-      deshabilitarBotones();
       return;
     }
     const data = await response.text();
@@ -41,10 +40,10 @@ async function fetchTSV() {
       const resultadoDiv = document.getElementById("resultado");
       resultadoDiv.innerHTML =
         "<h2>Aún no están registrados los grupos del año " + myParam + ".</h2>";
-      deshabilitarBotones();
       return;
     }
 
+    mostrarBotones();
     datos = rows.map((row) => {
       return {
         Id: row[0],
@@ -56,8 +55,6 @@ async function fetchTSV() {
         Logo: row[6],
       };
     });
-
-    console.log("Datos cargados:", datos);
 
     loader.style.display = "none";
   } catch (error) {
@@ -91,6 +88,21 @@ function deshabilitarBotones() {
 
   const scrollToTopButton = document.getElementById("scrollToTopButton");
   scrollToTopButton.style.display = "none";
+}
+
+function esconderBotones() {
+  const botones = document.querySelector(".botones-categorias");
+  botones.style.display = "none";
+
+  const buscador = document.getElementById("buscador");
+  buscador.style.display = "none";
+}
+
+function mostrarBotones() {
+  const botones = document.querySelector(".botones-categorias");
+  botones.style.display = "flex";
+  const buscador = document.getElementById("buscador");
+  buscador.style.display = "block";
 }
 
 function mostrarCategoria(categoria) {
@@ -142,7 +154,6 @@ function mostrarCategoria(categoria) {
       boton.classList.remove("Todos");
       boton.classList.remove("seleccionado");
     });
-    console.log("a");
     document.getElementById(categoria).classList.add("seleccionado");
   } else {
     resultadoDiv.innerHTML =
