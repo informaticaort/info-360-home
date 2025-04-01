@@ -6,19 +6,44 @@ window.addEventListener("popstate", function () {
   fetchTSV();
 });
 
-const tsvUrl =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTG4QwspZOrk3UP6zhZVUcb4uSZxEUZGPE4Pda-WXNfiGYP11rftONqyU9SXJ8tJFBwv0SH-O0v0Py3/pub?gid=1832559583&single=true&output=tsv"; // Reemplaza con la URL de tu archivo TSV
+const excelUrls = {
+  2024: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTG4QwspZOrk3UP6zhZVUcb4uSZxEUZGPE4Pda-WXNfiGYP11rftONqyU9SXJ8tJFBwv0SH-O0v0Py3/pub?gid=1832559583&single=true&output=tsv",
+  2025: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAe4sWUPODv6VHupXs6PVYVr5Fj_uMcdnsVa5KpW12t-LOWYifumX07vgXntmp3_Gj5X9HLeXywtOC/pub?gid=1832559583&single=true&output=tsv",
+};
 
 async function fetchTSV() {
   try {
     var loader = document.getElementById("loader");
     loader.style.display = "block";
 
-    const response = await fetch(tsvUrl);
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get("year");
+
+    const response = await fetch(excelUrls[myParam || 2024]);
+
+    if (!response.ok) {
+      loader.style.display = "none";
+      const resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML =
+        myParam < 1900 || myParam > 2100
+          ? "<h2>El año que ingresaste no es válido.</h2>"
+          : "<h2>No hay registros del año " + myParam + ".</h2>";
+      deshabilitarBotones();
+      return;
+    }
     const data = await response.text();
 
     let rows = data.split("\n").map((line) => line.split("\t"));
     rows = rows.slice(1, rows.length);
+
+    if (rows.length < 2) {
+      loader.style.display = "none";
+      const resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML =
+        "<h2>Aún no están registrados los grupos del año " + myParam + ".</h2>";
+      deshabilitarBotones();
+      return;
+    }
 
     datos = rows.map((row) => {
       return {
@@ -44,6 +69,28 @@ async function fetchTSV() {
 function girarTarjeta(button) {
   const tarjeta = button.closest(".flip-card");
   tarjeta.classList.toggle("girar");
+}
+
+function deshabilitarBotones() {
+  const botones = document.querySelectorAll(".botones-categorias button");
+  botones.forEach(function (boton) {
+    boton.disabled = true;
+  });
+  const buscador = document.getElementById("buscador");
+  buscador.disabled = true;
+  buscador.value = "";
+  buscador.placeholder = "No hay datos";
+  buscador.style.cursor = "not-allowed";
+  buscador.style.backgroundColor = "#f0f0f0";
+  buscador.style.color = "#999";
+  buscador.style.border = "1px solid #ccc";
+  buscador.style.transition = "background-color 0.3s ease";
+  buscador.style.boxShadow = "none";
+  buscador.style.outline = "none";
+  buscador.style.pointerEvents = "none";
+
+  const scrollToTopButton = document.getElementById("scrollToTopButton");
+  scrollToTopButton.style.display = "none";
 }
 
 function mostrarCategoria(categoria) {
