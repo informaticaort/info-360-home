@@ -1,62 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
-  <title>Info 360</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Proyectos de Info 360" />
-  <meta name="keywords" content="Info 360, Proyectos, Tecnología, Informática" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info 360 - Proyectos Tecnológicos</title>
+  
+  <!-- Meta Tags Mejorados -->
+  <meta name="description" content="Descubre los proyectos más innovadores de Info 360 - Tecnología, diseño y desarrollo de vanguardia" />
+  <meta name="keywords" content="Info 360, Proyectos, Tecnología, Innovación, Desarrollo, Vanguardia" />
+  <meta name="author" content="Info 360 Team" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Info 360 - Proyectos Tecnológicos" />
+  <meta property="og:description" content="Descubre los proyectos más innovadores de Info 360" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/jpg" href="static/img/logo.jpg" />
+  <link rel="apple-touch-icon" href="static/img/logo.jpg" />
+  
+  <!-- Fuentes Futuristas -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Estilos -->
   <link rel="stylesheet" href="static/css/style.css" />
+  
+  <!-- Tema de color para móviles -->
+  <meta name="theme-color" content="#00f5ff" />
+  <meta name="msapplication-TileColor" content="#00f5ff" />
 </head>
 
 <body>
-  <header>
-    <img src="static/img/Banner.gif" alt="Logo" id="logo-image" />
+  <!-- Header Futurista -->
+  <header class="futuristic-header">
+    <div class="neon-container">
+      <h1 class="neon-title">
+        <span class="neon-text" data-text="INFO 360">INFO 360</span>
+        <div class="neon-subtitle">PROYECTOS TECNOLÓGICOS</div>
+      </h1>
+      <div class="grid-overlay"></div>
+      <div class="particles"></div>
+    </div>
+    
+    <!-- Botón de modo claro/oscuro -->
+    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+      <div class="theme-icon">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </div>
+    </button>
   </header>
-  <nav class="botones-categorias navbar">
-    <div style="text-align: center">
-      <button id="Todos" class="button-55" onclick="mostrarTodos()">
-        Todos
-      </button>
-      <button id="Educación" class="button-55" onclick="mostrarCategoria(this.id)">
-        Educación
-      </button>
-      <button id="Impacto" class="button-55" onclick="mostrarCategoria(this.id)">
-        Impacto Social
-      </button>
-      <button id="Salud" class="button-55" onclick="mostrarCategoria(this.id)">
-        Salud
-      </button>
-      <button id="Social" class="button-55" onclick="mostrarCategoria(this.id)">
-        Social
-      </button>
-      <button id="E-Commerce" class="button-55" onclick="mostrarCategoria(this.id)">
-        E-commerce
-      </button>
-    </div>
-    <input type="text" id="buscador" placeholder="Buscar proyectos..." />
-  </nav>
-  <div class="container">
-    <div id="resultado" class="card-container">
-      <span id="loader"></span>
-    </div>
-    <img src="static/img/backtop.png" alt="" id="scrollToTopButton" onclick="scrollToTop()" />
 
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p id="modalParagraph">Some text in the Modal..</p>
+  <nav class="botones-categorias navbar" role="navigation" aria-label="Categorías de proyectos">
+    <div class="nav-buttons">
+      <button id="Todos" class="cyber-button" onclick="mostrarTodos()" aria-pressed="false">
+        <span class="button-content">
+          <span class="button-icon">🌟</span>
+          <span class="button-text">Todos</span>
+        </span>
+        <div class="button-glow"></div>
+      </button>
+      <button id="Educación" class="cyber-button" onclick="mostrarCategoria(this.id)" aria-pressed="false">
+        <span class="button-content">
+          <span class="button-icon">🎓</span>
+          <span class="button-text">Educación</span>
+        </span>
+        <div class="button-glow"></div>
+      </button>
+      <button id="Impacto" class="cyber-button" onclick="mostrarCategoria(this.id)" aria-pressed="false">
+        <span class="button-content">
+          <span class="button-icon">🌍</span>
+          <span class="button-text">Impacto Social</span>
+        </span>
+        <div class="button-glow"></div>
+      </button>
+      <button id="Salud" class="cyber-button" onclick="mostrarCategoria(this.id)" aria-pressed="false">
+        <span class="button-content">
+          <span class="button-icon">⚕️</span>
+          <span class="button-text">Salud</span>
+        </span>
+        <div class="button-glow"></div>
+      </button>
+      <button id="Social" class="cyber-button" onclick="mostrarCategoria(this.id)" aria-pressed="false">
+        <span class="button-content">
+          <span class="button-icon">👥</span>
+          <span class="button-text">Social</span>
+        </span>
+        <div class="button-glow"></div>
+      </button>
+      <button id="E-Commerce" class="cyber-button" onclick="mostrarCategoria(this.id)" aria-pressed="false">
+        <span class="button-content">
+          <span class="button-icon">🛒</span>
+          <span class="button-text">E-commerce</span>
+        </span>
+        <div class="button-glow"></div>
+      </button>
+    </div>
+    
+    <div class="search-container">
+      <div class="cyber-search">
+        <input 
+          type="text" 
+          id="buscador" 
+          placeholder="🔍 Buscar proyectos..." 
+          aria-label="Buscar proyectos"
+          autocomplete="off"
+        />
+        <div class="search-glow"></div>
       </div>
     </div>
-  </d>
+  </nav>
+
+  <main class="container">
+    <section id="resultado" class="card-container" role="main" aria-label="Proyectos disponibles">
+      <div class="loader-container">
+        <div class="cyber-loader">
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
+          <span class="loader-text">Cargando proyectos...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Botón scroll to top futurista -->
+    <button 
+      id="scrollToTopButton" 
+      onclick="scrollToTop()" 
+      aria-label="Volver al inicio"
+      title="Volver al inicio"
+      class="cyber-scroll-btn"
+    >
+      <div class="scroll-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 15l-6-6-6 6"/>
+        </svg>
+      </div>
+      <div class="scroll-glow"></div>
+    </button>
+
+    <!-- Modal futurista -->
+    <div id="myModal" class="cyber-modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-content">
+        <header class="modal-header">
+          <h2 id="modalTitle" class="modal-title">Descripción del Proyecto</h2>
+          <button class="close cyber-close" aria-label="Cerrar modal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <p id="modalParagraph">Cargando descripción...</p>
+        </div>
+        <div class="modal-glow"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="static/js/script.js"></script>
+  
+  <!-- Preload crítico -->
+  <link rel="preload" href="static/css/style.css" as="style" />
+  <link rel="preload" href="static/js/script.js" as="script" />
 </body>
-<script src="static/js/script.js"></script>
 
 </html>
