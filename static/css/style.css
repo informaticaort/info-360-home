@@ -1230,3 +1230,64 @@ b, strong {
   font-weight: 700;
   text-shadow: 0 0 5px var(--neon-cyan);
 }
+
+
+
+/* ================== FIX: separar acento UI vs categoría Educación ================== */
+/* 1) Definimos variables exclusivas para la categoría Educación (modo oscuro y claro) */
+:root{
+  --edu-color: #1BB3BD;         /* distinto al --neon-cyan global */
+  --edu-ink:   #062e30;         /* texto legible sobre --edu-color */
+  --edu-glow:  rgba(27,179,189,.32);
+}
+:root.light-theme{
+  --edu-color: #0FA4AE;         /* un toque más sobrio en claro */
+  --edu-ink:   #053336;
+  --edu-glow:  rgba(15,164,174,.28);
+}
+
+/* 2) Aplicamos esas variables SOLO a la categoría Educación */
+.Educación{
+  border-color: var(--edu-color) !important;
+  box-shadow: 0 0 30px var(--edu-glow) !important;
+}
+.Educación-background{
+  background: var(--edu-color) !important;
+  /* antes heredaba el color del UI (neon-cyan); ahora fijamos la tinta */
+  color: var(--edu-ink) !important;
+  text-shadow: none !important;                /* mejora legibilidad */
+  box-shadow: 0 0 20px var(--edu-glow) !important;
+}
+
+/* 3) Aseguramos contraste en la pastilla superior y el botón “+” cuando sean de Educación */
+.curso-position.Educación-background #curso{
+  color: var(--edu-ink) !important;
+}
+.girar-button.Educación-background{
+  color: var(--edu-ink) !important;
+  border-color: color-mix(in oklab, var(--edu-color) 65%, #ffffff 0%) !important;
+}
+
+/* 4) Si algún texto encima del fondo educación quedara muy claro, lo reforzamos */
+.Educación .flip-card-front h3,
+.Educación .flip-card-front #integrantes{
+  text-shadow: none; /* sin glow cian global */
+}
+
+/* ================== (opcional) suavizar el cyan global sin tocar la categoría ================== */
+:root{ --neon-cyan: #85E9EC; }             /* tu valor actual “general/acento” */
+:root.light-theme{ --neon-cyan: #00CED1; } /* acento en claro */
+
+/* === Botón "+" universal en negro sin borde === */
+.girar-button {
+  color: #000000 !important;        /* ícono blanco para contraste */
+  border: none !important;       /* sin reborde */
+  border-radius: 6px;            /* podés ajustar: 0, 6px, 50% si lo querés circular */
+  padding: 10px 15px;
+  box-shadow: none !important;   /* sin glow */
+}
+
+.girar-button:hover {
+  background: #111 !important;   /* un negro apenas más claro en hover */
+  transform: scale(1.05);        /* efecto sutil */
+}
