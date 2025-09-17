@@ -33,6 +33,12 @@
   --gradient-cyber: linear-gradient(135deg, #00f5ff 0%, #bf00ff 100%);
   --gradient-neon: linear-gradient(45deg, #00f5ff, #ff2d92, #bf00ff);
   --gradient-energy: linear-gradient(90deg, #00f5ff 0%, #00ff41 50%, #00f5ff 100%);
+
+  --h-curso: 44px;          /* alto fijo de la pastilla de curso */
+  --lh-titulo: 1.25;        /* line-height del título */
+  --lines-titulo: 2;        /* cuántas líneas ocupa el título */
+  --lh-integrantes: 1.4;    /* line-height de integrantes */
+  --lines-integrantes: 2;   /* cuántas líneas ocupa integrantes */
 }
 
 /* Variables para tema claro */
@@ -43,12 +49,12 @@
   --glass-bg: rgba(0, 206, 209, 0.1);
   
   /* Colores para tema claro - Turquesa */
-  --neon-cyan: #00CED1;
-  --neon-pink: #cc1155;
-  --neon-purple: #7700cc;
-  --neon-green: #00aa22;
-  --neon-orange: #cc6600;
-  --neon-yellow: #cc9900;
+  --neon-cyan: #00e7eb;
+  --neon-pink: #dd1b62;
+  --neon-purple: #8712da;
+  --neon-green: #10be33;
+  --neon-orange: #ff8e1d;
+  --neon-yellow: #daa814;
   
   /* Textos para tema claro */
   --text-primary: #333333;
@@ -159,11 +165,11 @@ body::before {
   font-size: 4rem;
   font-weight: 900;
   color: var(--neon-cyan);
-  text-shadow: 
-    0 0 5px var(--neon-cyan),
-    0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-cyan),
-    0 0 40px var(--neon-cyan);
+  text-shadow:
+    0 0 2px var(--neon-cyan),
+    0 0 6px var(--neon-cyan),
+    0 0 12px rgba(0,245,255,0.5),
+    0 0 24px rgba(0,245,255,0.3);
   animation: neonFlicker 3s ease-in-out infinite alternate;
   position: relative;
   display: inline-block;
@@ -182,19 +188,19 @@ body::before {
 }
 
 @keyframes neonFlicker {
-  0%, 100% { 
-    text-shadow: 
-      0 0 5px var(--neon-cyan),
-      0 0 10px var(--neon-cyan),
-      0 0 20px var(--neon-cyan),
-      0 0 40px var(--neon-cyan);
-  }
-  50% { 
-    text-shadow: 
+  0%, 100% {
+    text-shadow:
       0 0 2px var(--neon-cyan),
-      0 0 5px var(--neon-cyan),
-      0 0 10px var(--neon-cyan),
-      0 0 20px var(--neon-cyan);
+      0 0 6px var(--neon-cyan),
+      0 0 12px rgba(0,245,255,0.5),
+      0 0 24px rgba(0,245,255,0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 1px var(--neon-cyan),
+      0 0 3px var(--neon-cyan),
+      0 0 6px rgba(0,245,255,0.3),
+      0 0 12px rgba(0,245,255,0.15);
   }
 }
 
@@ -673,13 +679,17 @@ body::before {
 /* Contenedor de curso futurista */
 .curso-container {
   width: 100%;
-  height: 45px;
+  height: var(--h-curso) !important;
   margin-bottom: 15px;
 }
 
 .curso-position {
   width: 100%;
-  height: 100%;
+  height: 100% !important;
+  line-height: calc(var(--h-curso) - 0px) !important; /* centra el texto vertical */
+  padding: 0 14px !important;
+  box-sizing: border-box !important;
+  border-width: 0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1219,6 +1229,12 @@ h3 {
   margin: 15px 0;
 }
 
+.logo-container #logo{
+  height: 120px !important;
+  object-fit: contain !important;
+}
+
+
 /* Cambiar clases button-55 por cyber-button para compatibilidad */
 .button-55 {
   /* Redirigir a cyber-button */
@@ -1290,4 +1306,25 @@ b, strong {
 .girar-button:hover {
   background: #111 !important;   /* un negro apenas más claro en hover */
   transform: scale(1.05);        /* efecto sutil */
+}
+
+/* Título: siempre misma altura (2 líneas) */
+.flip-card-front h3{
+  line-height: var(--lh-titulo) !important;
+  min-height: calc(var(--lines-titulo) * 1em * var(--lh-titulo)) !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: var(--lines-titulo);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: none !important;            /* evita “engordar” el alto visual */
+}
+
+.flip-card-front #integrantes{
+  line-height: var(--lh-integrantes) !important;
+  min-height: calc(var(--lines-integrantes) * 1em * var(--lh-integrantes)) !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: var(--lines-integrantes);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: none !important;
 }
