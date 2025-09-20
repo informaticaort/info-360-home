@@ -370,7 +370,7 @@ function createProjectCard(item, index) {
   card.classList.add("flip-card");
   
   const categoria = item.Categoria.replace(/ /g, "");
-  const logoUrl = item.Logo || 'https://via.placeholder.com/200x120?text=Logo';
+  const logoUrl = item.Logo || `https://placehold.co/200x120?text=${item.Logo}`;
   
   card.innerHTML = `
     <div class="flip-card-inner ${categoria}">
@@ -382,7 +382,7 @@ function createProjectCard(item, index) {
         </div>
         <div class="logo-container">
           <img src="${logoUrl}" alt="Logo del proyecto ${item.Nombre}" id="logo" 
-               onerror="this.src='https://via.placeholder.com/200x120?text=Logo'">
+               onerror="this.src='https://placehold.co/200x120?text=Logo'">
         </div>
         <h3>${truncateText(item.Nombre, 60)}</h3>
         <p id="integrantes">${truncateText(item.Integrantes, 80)}</p>
