@@ -120,6 +120,77 @@
     </div>
   </nav>
 
+  <!-- Botón de filtros para móvil -->
+  <button class="mobile-filter-btn" onclick="toggleMobileFilters()" aria-label="Abrir filtros">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
+    </svg>
+  </button>
+
+  <!-- Drawer de filtros para móvil -->
+  <div class="mobile-filters-drawer" id="mobileFiltersDrawer" onclick="closeMobileFilters(event)">
+    <div class="mobile-filters-content" onclick="event.stopPropagation()">
+      <div class="mobile-filters-header">
+        <span class="mobile-filters-title">🔍 Filtrar Proyectos</span>
+        <button class="mobile-filters-close" onclick="closeMobileFilters()" aria-label="Cerrar filtros">
+          ×
+        </button>
+      </div>
+      
+      <div class="mobile-filters-grid">
+        <button id="mobile-Todos" class="cyber-button" onclick="mostrarTodos(); closeMobileFilters();">
+          <span class="button-content">
+            <span class="button-icon">🌟</span>
+            <span class="button-text">Todos</span>
+          </span>
+        </button>
+        <button id="mobile-Educación" class="cyber-button" onclick="mostrarCategoria('Educación'); closeMobileFilters();">
+          <span class="button-content">
+            <span class="button-icon">🎓</span>
+            <span class="button-text">Educación</span>
+          </span>
+        </button>
+        <button id="mobile-Impacto" class="cyber-button" onclick="mostrarCategoria('Impacto'); closeMobileFilters();">
+          <span class="button-content">
+            <span class="button-icon">🌍</span>
+            <span class="button-text">Impacto Social</span>
+          </span>
+        </button>
+        <button id="mobile-Salud" class="cyber-button" onclick="mostrarCategoria('Salud'); closeMobileFilters();">
+          <span class="button-content">
+            <span class="button-icon">⚕️</span>
+            <span class="button-text">Salud</span>
+          </span>
+        </button>
+        <button id="mobile-Social" class="cyber-button" onclick="mostrarCategoria('Social'); closeMobileFilters();">
+          <span class="button-content">
+            <span class="button-icon">👥</span>
+            <span class="button-text">Social</span>
+          </span>
+        </button>
+        <button id="mobile-E-Commerce" class="cyber-button" onclick="mostrarCategoria('E-Commerce'); closeMobileFilters();">
+          <span class="button-content">
+            <span class="button-icon">🛒</span>
+            <span class="button-text">E-commerce</span>
+          </span>
+        </button>
+      </div>
+      
+      <div class="mobile-search">
+        <div class="cyber-search">
+          <input 
+            type="text" 
+            id="buscadorMovil" 
+            placeholder="🔍 Buscar proyectos..." 
+            aria-label="Buscar proyectos"
+            autocomplete="off"
+          />
+          <div class="search-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main class="container">
     <section id="resultado" class="card-container" role="main" aria-label="Proyectos disponibles">
       <div class="loader-container">

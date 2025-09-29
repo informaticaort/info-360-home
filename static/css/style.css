@@ -645,7 +645,7 @@ body::before {
 .flip-card-front {
   justify-content: space-between;
   align-items: center;
-  padding: 25px;
+  padding: 20px; /* Reducir de 25px a 20px */
 }
 
 .flip-card-back {
@@ -676,11 +676,11 @@ body::before {
     inset 0 0 10px rgba(0, 206, 209, 0.08);
 }
 
-/* Contenedor de curso futurista */
+/* Contenedor de curso futurista - más compacto */
 .curso-container {
   width: 100%;
   height: var(--h-curso) !important;
-  margin-bottom: 15px;
+  margin-bottom: 8px; /* Reducir de 15px a 8px */
 }
 
 .curso-position {
@@ -709,35 +709,35 @@ body::before {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Logo futurista */
+/* Logo futurista - más compacto */
 #logo {
   width: 100%;
   max-width: 200px;
-  height: 120px;
+  height: 100px; /* Reducir de 120px a 100px */
   object-fit: contain;
   border-radius: 10px;
-  margin: 15px 0;
+  margin: 8px 0; /* Reducir de 15px a 8px */
   filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 10px rgba(0, 245, 255, 0.3));
   background: transparent;
   border: 1px solid rgba(0, 245, 255, 0.3);
 }
 
-/* Tipografía futurista */
+/* Tipografía futurista - más compacta */
 h3 {
   font-family: "Orbitron", monospace;
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* Reducir de 1.2rem a 1.1rem */
   font-weight: 700;
-  margin: 15px 0;
+  margin: 8px 0; /* Reducir de 15px a 8px */
   color: var(--text-primary);
   text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
-  line-height: 1.3;
+  line-height: 1.2; /* Reducir line-height */
 }
 
 #integrantes {
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Reducir de 0.9rem a 0.85rem */
   color: var(--text-secondary);
-  margin: 10px 0;
-  line-height: 1.4;
+  margin: 6px 0; /* Reducir de 10px a 6px */
+  line-height: 1.3; /* Reducir line-height */
   text-shadow: 0 0 5px rgba(0, 245, 255, 0.3);
 }
 
@@ -748,7 +748,8 @@ h3 {
   line-height: 1.2;
 }
 
-/* Botón girar futurista */
+/* Botón girar futurista - ESTILOS ORIGINALES COMENTADOS PARA EVITAR CONFLICTOS */
+/* 
 .girar-button {
   position: relative;
   background: rgba(0, 245, 255, 0.1);
@@ -764,7 +765,9 @@ h3 {
   overflow: hidden;
   clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
 }
+*/
 
+/* Efectos ::before comentados para evitar interferencia
 .girar-button::before {
   content: '';
   position: absolute;
@@ -779,13 +782,16 @@ h3 {
 .girar-button:hover::before {
   left: 100%;
 }
+*/
 
+/* Hover original comentado - se usa el hover nuevo más abajo
 .girar-button:hover {
   box-shadow: 
     0 0 20px var(--neon-cyan),
     inset 0 0 20px rgba(0, 245, 255, 0.1);
   transform: translateY(-2px);
 }
+*/
 
 .ubicacion-boton {
   width: 100%;
@@ -1148,14 +1154,216 @@ h3 {
   }
   
   .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 15px;
+    margin-top: 20px; /* Margen normal sin navbar fija */
   }
   
+  /* Ocultar navbar tradicional en móvil */
   .navbar {
-    flex-direction: column;
-    gap: 20px;
+    display: none !important;
+  }
+  
+  /* Botón de filtros para móvil */
+  .mobile-filter-btn {
+    display: flex !important;
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 45, 146, 0.1);
+    color: var(--neon-pink);
+    border: 2px solid var(--neon-pink);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+  
+  .mobile-filter-btn:hover {
+    box-shadow: 
+      0 0 30px var(--neon-pink),
+      inset 0 0 20px rgba(255, 45, 146, 0.2);
+    transform: translateY(-5px);
+  }
+  
+  /* Efecto de brillo para el botón de filtros */
+  .mobile-filter-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .mobile-filter-btn:hover::before {
+    opacity: 0.5;
+  }
+  
+  /* Drawer/Modal para filtros en móvil */
+  .mobile-filters-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: none;
+    align-items: flex-end;
+  }
+  
+  /* Mostrar drawer cuando está abierto */
+  .mobile-filters-drawer.mobile-drawer-open {
+    display: flex !important;
+  }
+  
+  .mobile-filters-drawer.mobile-drawer-open .mobile-filters-content {
+    transform: translateY(0) !important;
+  }
+  
+  .mobile-filters-content {
+    width: 100%;
+    max-height: 70vh;
+    background: var(--primary-bg);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  .mobile-filters-drawer.open .mobile-filters-content {
+    transform: translateY(0);
+  }
+  
+  .mobile-filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--neon-cyan);
+  }
+  
+  .mobile-filters-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--neon-cyan);
+  }
+  
+  .mobile-filters-close {
+    background: none;
+    border: none;
+    color: var(--neon-cyan);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mobile-filters-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+  
+  /* Botones de categoría en móvil */
+  .mobile-filters-grid .cyber-button {
+    padding: 12px 8px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    min-height: auto;
+  }
+  
+  .mobile-filters-grid .cyber-button.seleccionado {
+    background: rgba(0, 245, 255, 0.2);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+    transform: scale(1.02);
+  }
+  
+  .mobile-filters-grid .cyber-button .button-text {
+    font-size: 0.8rem;
+  }
+  
+  .mobile-search {
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  /* Estilo especial para el buscador móvil */
+  .mobile-search .cyber-search {
+    background: rgba(0, 245, 255, 0.1);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 15px;
+    padding: 5px;
+    position: relative;
+  }
+  
+  .mobile-search .cyber-search input {
+    background: transparent;
+    border: none;
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .mobile-search .cyber-search input::placeholder {
+    color: var(--neon-cyan);
+    opacity: 0.7;
+  }
+  
+  .mobile-search .cyber-search:focus-within {
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    border-color: var(--neon-cyan);
+  }
+  
+  /* Optimizar espaciado interno de las tarjetas en móvil */
+  .flip-card-front {
+    padding: 15px !important; /* Reducir padding de 25px a 15px */
+  }
+  
+  /* Reducir espacios entre elementos */
+  .curso-container {
+    margin-bottom: 8px !important; /* Reducir de 15px a 8px */
+  }
+  
+  #logo {
+    height: 80px !important; /* Reducir altura del logo de 120px a 80px */
+    margin: 8px 0 !important; /* Reducir márgenes de 15px a 8px */
+  }
+  
+  .flip-card-front h3 {
+    font-size: 1rem !important; /* Reducir tamaño de fuente */
+    margin: 8px 0 !important; /* Reducir márgenes de 15px a 8px */
+    line-height: 1.2 !important;
+  }
+  
+  #integrantes {
+    font-size: 0.8rem !important; /* Reducir tamaño de fuente */
+    margin: 8px 0 !important; /* Reducir márgenes de 10px a 8px */
+    line-height: 1.3 !important;
   }
   
   .nav-buttons {
@@ -1174,7 +1382,50 @@ h3 {
   }
   
   .flip-card {
-    height: 400px;
+    height: 380px !important; /* Reducir altura para acomodar mejor el contenido */
+  }
+  
+  /* MÓVIL: Ajustar contenedor del botón */
+  .ubicacion-boton {
+    padding: 10px !important; /* Reducir padding en móvil */
+  }
+  
+  /* MÓVIL: Estilo circular compacto para el botón */
+  .girar-button {
+    background: rgba(0, 0, 0, 0.9) !important;
+    border: 2px solid var(--neon-cyan) !important;
+    color: var(--neon-cyan) !important;
+    border-radius: 50% !important;
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    min-height: 45px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 1.2rem !important;
+    clip-path: none !important;
+    box-shadow: 0 0 15px var(--neon-cyan) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 101 !important;
+  }
+  
+  .girar-button:hover {
+    background: var(--neon-cyan) !important;
+    color: #000 !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 25px var(--neon-cyan) !important;
+  }
+  
+  .girar-button svg {
+    width: 18px !important;
+    height: 18px !important;
+    stroke: currentColor !important;
+    fill: none !important;
+    stroke-width: 2.5 !important;
   }
 }
 
@@ -1186,6 +1437,7 @@ h3 {
   .card-container {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 15px;
+    margin-top: 20px; /* Margen normal */
   }
   
   .modal-content {
@@ -1198,9 +1450,51 @@ h3 {
     gap: 10px;
   }
   
+  /* Ocultar navbar también en móviles muy pequeños */
+  .navbar {
+    display: none !important;
+  }
+  
   .cyber-button {
     width: 100%;
     justify-content: center;
+  }
+  
+  /* Optimización extra para móviles muy pequeños */
+  .flip-card-front {
+    padding: 12px !important; /* Aún menos padding */
+  }
+  
+  .curso-container {
+    margin-bottom: 5px !important; /* Mínimo margen */
+  }
+  
+  #logo {
+    height: 70px !important; /* Logo aún más pequeño */
+    margin: 5px 0 !important; /* Mínimos márgenes */
+  }
+  
+  .flip-card-front h3 {
+    font-size: 0.9rem !important; /* Texto más pequeño */
+    margin: 5px 0 !important;
+  }
+  
+  #integrantes {
+    font-size: 0.75rem !important; /* Texto más pequeño */
+    margin: 5px 0 !important;
+  }
+  
+  /* Botón aún más pequeño para móviles pequeños */
+  .girar-button {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    font-size: 1.1rem !important;
+  }
+  
+  .ubicacion-boton {
+    padding: 8px !important; /* Menos padding */
   }
 }
 
@@ -1279,9 +1573,16 @@ b, strong {
 .curso-position.Educación-background #curso{
   color: var(--edu-ink) !important;
 }
-.girar-button.Educación-background{
-  color: var(--edu-ink) !important;
-  border-color: color-mix(in oklab, var(--edu-color) 65%, #ffffff 0%) !important;
+/* Forzar colores consistentes para TODOS los botones de categoría */
+.girar-button[class*="-background"] {
+  color: var(--neon-cyan) !important;
+  border-color: var(--neon-cyan) !important;
+  background: rgba(0, 245, 255, 0.1) !important;
+}
+
+.girar-button[class*="-background"]:hover {
+  color: #000 !important;
+  background: var(--neon-cyan) !important;
 }
 
 /* 4) Si algún texto encima del fondo educación quedara muy claro, lo reforzamos */
@@ -1294,19 +1595,62 @@ b, strong {
 :root{ --neon-cyan: #85E9EC; }             /* tu valor actual “general/acento” */
 :root.light-theme{ --neon-cyan: #00CED1; } /* acento en claro */
 
-/* === Botón "+" universal en negro sin borde === */
-.girar-button {
-  color: #000000 !important;        /* ícono blanco para contraste */
-  border: none !important;       /* sin reborde */
-  border-radius: 6px;            /* podés ajustar: 0, 6px, 50% si lo querés circular */
-  padding: 10px 15px;
-  box-shadow: none !important;   /* sin glow */
+/* === REGLA GLOBAL COMENTADA - Puede interferir con desktop ===
+.flip-card .ubicacion-boton {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 50;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  padding: 10px;
+}
+*/
+
+/* REGLAS GLOBALES COMENTADAS - Causaban conflicto con desktop
+.flip-card .girar-button {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 51;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+  transition: all 0.3s ease;
+  clip-path: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
-.girar-button:hover {
-  background: #111 !important;   /* un negro apenas más claro en hover */
-  transform: scale(1.05);        /* efecto sutil */
+.flip-card .girar-button:hover {
+  background: var(--neon-cyan);
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 25px var(--neon-cyan);
 }
+
+.flip-card .girar-button svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+*/
 
 /* Título: siempre misma altura (2 líneas) */
 .flip-card-front h3{
@@ -1327,4 +1671,98 @@ b, strong {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-shadow: none !important;
+}
+
+/* =============================================
+   SOLUCION DEFINITIVA - BOTON VISIBLE MOBILE
+   ============================================= */
+
+/* Ocultar botón de filtros móvil en desktop */
+.mobile-filter-btn {
+  display: none;
+}
+
+.mobile-filters-drawer {
+  display: none;
+}
+
+/* Estilos base para DESKTOP - más compacto */
+.ubicacion-boton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  padding: 10px; /* Reducir de 15px a 10px */
+  position: relative;
+  z-index: 100;
+}
+
+/* Botón para desktop - tamaño fijo para evitar cortes */
+.girar-button {
+  position: relative;
+  background: rgba(0, 245, 255, 0.1);
+  border: 2px solid var(--neon-cyan);
+  border-radius: 8px;
+  padding: 0; /* Sin padding para control total del tamaño */
+  font-family: "Orbitron", monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--neon-cyan) !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: visible;
+  opacity: 1;
+  z-index: 101;
+  width: 50px !important; /* Tamaño fijo */
+  height: 50px !important; /* Tamaño fijo */
+  min-width: 50px;
+  min-height: 50px;
+  box-sizing: border-box; /* Incluir borde en el tamaño */
+}
+
+/* Asegurar que el SVG no se corte */
+.girar-button svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  flex-shrink: 0; /* No permitir que se encoja */
+}
+
+/* Hover para desktop */
+.girar-button:hover {
+  background: var(--neon-cyan) !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px var(--neon-cyan);
+  transform: translateY(-2px);
+}
+
+/* Reglas duplicadas eliminadas - se mantienen las de arriba */
+
+/* Clases auxiliares para JavaScript */
+.visible-container {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.visible-button {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #000000 !important;
+  border: 3px solid #00f5ff !important;
+  color: #00f5ff !important;
+  border-radius: 50% !important;
+  width: 50px !important;
+  height: 50px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 999 !important;
 }

@@ -116,6 +116,12 @@ function setupEventListeners() {
         const terminoBusqueda = buscador.value.trim().toLowerCase();
         updateActiveButton(null);
         filtrarProyectos(terminoBusqueda);
+        
+        // Sincronizar con buscador móvil
+        const buscadorMovil = document.getElementById('buscadorMovil');
+        if (buscadorMovil) {
+          buscadorMovil.value = buscador.value;
+        }
       }, 300);
     });
     
@@ -129,12 +135,65 @@ function setupEventListeners() {
     });
   }
 
+  // Configurar búsqueda móvil
+  const buscadorMovil = document.getElementById('buscadorMovil');
+  if (buscadorMovil) {
+    let searchTimeout;
+    
+    buscadorMovil.addEventListener('input', function() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const terminoBusqueda = buscadorMovil.value.trim().toLowerCase();
+        updateActiveButton(null);
+        filtrarProyectos(terminoBusqueda);
+      }, 300);
+    });
+    
+    // Cerrar drawer al presionar Enter
+    buscadorMovil.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const terminoBusqueda = buscadorMovil.value.trim().toLowerCase();
+        
+        if (terminoBusqueda) {
+          // Realizar búsqueda inmediata
+          clearTimeout(searchTimeout);
+          updateActiveButton(null);
+          filtrarProyectos(terminoBusqueda);
+          
+          // Cerrar drawer después de un pequeño delay para mostrar que se procesó la búsqueda
+          setTimeout(() => {
+            closeMobileFilters();
+          }, 200);
+        } else {
+          // Si no hay texto, mostrar todos y cerrar
+          mostrarTodos();
+          closeMobileFilters();
+        }
+      }
+    });
+    
+    // Sincronizar con el buscador principal
+    buscadorMovil.addEventListener('focus', function() {
+      const buscadorPrincipal = document.getElementById('buscador');
+      if (buscadorPrincipal && buscadorPrincipal.value) {
+        buscadorMovil.value = buscadorPrincipal.value;
+      }
+    });
+  }
+
   // Configurar atajos de teclado
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       const modal = document.getElementById('myModal');
       if (modal && modal.style.display === 'block') {
         modal.style.display = 'none';
+      }
+      
+      // Cerrar drawer de filtros móvil con ESC
+      const drawer = document.getElementById('mobileFiltersDrawer');
+      if (drawer && drawer.classList.contains('mobile-drawer-open')) {
+        closeMobileFilters();
       }
     }
     
@@ -162,6 +221,14 @@ function setupEventListeners() {
       modal.style.display = "none";
     }
   };
+  
+  // Escuchar cambios en el tamaño de ventana para manejar vista móvil
+  window.addEventListener('resize', function() {
+    handleMobileView();
+  });
+  
+  // Ejecutar al cargar
+  handleMobileView();
 }
 
 // Función principal para obtener datos del TSV
@@ -200,6 +267,9 @@ async function fetchTSV() {
     hideLoader();
     mostrarBotones();
     mostrarTodos();
+    
+    // Manejar vista móvil después de cargar datos
+    handleMobileView();
     
     // Agregar efectos de entrada
     setTimeout(() => {
@@ -317,8 +387,83 @@ function mostrarTodos() {
   renderProjects(datos);
 }
 
-// Actualizar botón activo con efectos futuristas
+/* Funciones para el drawer de filtros móvil */
+function toggleMobileFilters() {
+  const drawer = document.getElementById('mobileFiltersDrawer');
+  if (drawer) {
+    drawer.classList.add('mobile-drawer-open');
+    document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+    
+    // Sincronizar búsquedas al abrir
+    syncSearchFields();
+    
+    // Sincronizar estado activo cuando se abre el drawer
+    syncMobileButtonStates();
+  }
+}
+
+// Función para sincronizar estados entre botones desktop y móvil
+function syncMobileButtonStates() {
+  const activeDesktopButton = document.querySelector('.cyber-button.seleccionado:not([id^="mobile-"])');
+  
+  if (activeDesktopButton) {
+    const activeId = activeDesktopButton.id;
+    const mobileButton = document.getElementById('mobile-' + activeId);
+    
+    if (mobileButton) {
+      // Limpiar todos los botones móviles primero
+      const mobileBotones = document.querySelectorAll('[id^="mobile-"].cyber-button');
+      mobileBotones.forEach(btn => btn.classList.remove("seleccionado"));
+      
+      // Activar el botón móvil correspondiente
+      mobileButton.classList.add("seleccionado");
+    }
+  } else {
+    // Si no hay ningún botón activo, activar "Todos" por defecto en móvil
+    const todosMobile = document.getElementById('mobile-Todos');
+    if (todosMobile) {
+      const mobileBotones = document.querySelectorAll('[id^="mobile-"].cyber-button');
+      mobileBotones.forEach(btn => btn.classList.remove("seleccionado"));
+      todosMobile.classList.add("seleccionado");
+    }
+  }
+}
+
+function closeMobileFilters(event) {
+  if (event && event.target !== event.currentTarget) {
+    return; // Solo cerrar si se hace clic en el fondo
+  }
+  
+  const drawer = document.getElementById('mobileFiltersDrawer');
+  if (drawer) {
+    drawer.classList.remove('mobile-drawer-open');
+    document.body.style.overflow = ''; // Restaurar scroll del body
+    
+    // Sincronizar búsquedas al cerrar
+    syncSearchFields();
+  }
+}
+
+// Función para sincronizar campos de búsqueda
+function syncSearchFields() {
+  const buscador = document.getElementById('buscador');
+  const buscadorMovil = document.getElementById('buscadorMovil');
+  
+  if (buscador && buscadorMovil) {
+    // Sincronizar del principal al móvil si el principal tiene contenido
+    if (buscador.value.trim() && !buscadorMovil.value.trim()) {
+      buscadorMovil.value = buscador.value;
+    }
+    // Sincronizar del móvil al principal si el móvil tiene contenido
+    else if (buscadorMovil.value.trim()) {
+      buscador.value = buscadorMovil.value;
+    }
+  }
+}
+
+// Actualizar botón activo con efectos futuristas (desktop y móvil)
 function updateActiveButton(activeCategory) {
+  // Limpiar todos los botones (desktop)
   const botones = document.querySelectorAll(".cyber-button");
   
   botones.forEach(boton => {
@@ -327,10 +472,17 @@ function updateActiveButton(activeCategory) {
   });
   
   if (activeCategory) {
+    // Actualizar botón desktop
     const botonActivo = document.getElementById(activeCategory);
     if (botonActivo) {
       botonActivo.classList.add("seleccionado");
       botonActivo.style.boxShadow = '0 0 30px var(--neon-cyan), inset 0 0 30px rgba(0, 245, 255, 0.2)';
+    }
+    
+    // Actualizar botón móvil correspondiente
+    const botonMovil = document.getElementById('mobile-' + activeCategory);
+    if (botonMovil) {
+      botonMovil.classList.add("seleccionado");
     }
   }
 }
@@ -361,6 +513,8 @@ function renderProjects(projects) {
   // Agregar animaciones de entrada
   setTimeout(() => {
     addCardAnimations();
+    // Asegurar vista móvil después de renderizar
+    handleMobileView();
   }, 50);
 }
 
@@ -410,6 +564,21 @@ function createProjectCard(item, index) {
       </div>
     </div>
   `;
+  
+  // Asegurar visibilidad del botón
+  setTimeout(() => {
+    const buttons = card.querySelectorAll('.girar-button');
+    const containers = card.querySelectorAll('.ubicacion-boton');
+    
+    // Aplicar clases CSS en lugar de estilos inline
+    buttons.forEach(button => {
+      button.classList.add('visible-button');
+    });
+    
+    containers.forEach(container => {
+      container.classList.add('visible-container');
+    });
+  }, 10);
   
   return card;
 }
@@ -502,18 +671,114 @@ function filtrarProyectos(termino) {
   renderProjects(proyectosFiltrados);
 }
 
+// Función para detectar si es móvil
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
+// Variables para el scroll en móvil
+let lastScrollTop = 0;
+let scrollTimeout;
+
+// Función para manejar el scroll en móvil
+function handleMobileScroll() {
+  if (!isMobile()) return;
+  
+  const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
+  
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  // Limpiar timeout anterior
+  clearTimeout(scrollTimeout);
+  
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    // Scrolleando hacia abajo - ocultar navbar
+    navbar.classList.add('hidden');
+  } else {
+    // Scrolleando hacia arriba o cerca del top - mostrar navbar
+    navbar.classList.remove('hidden');
+  }
+  
+  // Actualizar posición anterior después de un delay
+  scrollTimeout = setTimeout(() => {
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, 50);
+}
+
+// Manejar vista móvil
+function handleMobileView() {
+  const botones = document.querySelector(".botones-categorias");
+  const buscador = document.getElementById("buscador");
+  
+  if (isMobile()) {
+    // En móvil, la navbar es visible por CSS, solo gestionar scroll
+    setupMobileScrollListener();
+    
+    // Asegurar que todos los botones de descripción sean visibles
+    setTimeout(() => {
+      const descriptionButtons = document.querySelectorAll('.girar-button');
+      const buttonContainers = document.querySelectorAll('.ubicacion-boton');
+      
+      descriptionButtons.forEach(button => {
+        button.style.display = 'flex';
+        button.style.opacity = '1';
+        button.style.visibility = 'visible';
+        button.style.position = 'relative';
+        button.style.zIndex = '20';
+      });
+      
+      buttonContainers.forEach(container => {
+        container.style.display = 'flex';
+        container.style.visibility = 'visible';
+      });
+    }, 100);
+    
+  } else {
+    // En desktop, mostrar navbar normal si hay datos
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+      navbar.classList.remove('hidden');
+      navbar.style.position = 'static'; // Resetear posición para desktop
+    }
+    
+    if (datos.length > 0) {
+      mostrarBotones();
+    }
+    
+    // Remover listener de scroll en desktop
+    window.removeEventListener('scroll', handleMobileScroll);
+  }
+}
+
+// Configurar listener de scroll para móvil
+function setupMobileScrollListener() {
+  // Remover listener anterior si existe
+  window.removeEventListener('scroll', handleMobileScroll);
+  // Agregar nuevo listener
+  window.addEventListener('scroll', handleMobileScroll, { passive: true });
+}
+
 // Funciones de utilidad para botones
 function mostrarBotones() {
   const botones = document.querySelector(".botones-categorias");
   const buscador = document.getElementById("buscador");
   
-  if (botones) {
-    botones.style.display = "flex";
-    // Agregar animación de entrada
-    botones.style.animation = 'fadeIn 0.5s ease';
-  }
-  if (buscador) {
-    buscador.style.display = "block";
+  if (isMobile()) {
+    // En móvil, la navbar ya es visible por CSS, solo asegurar que no esté oculta
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+      navbar.style.display = "flex";
+    }
+  } else {
+    // En desktop, mostrar botones normalmente
+    if (botones) {
+      botones.style.display = "flex";
+      botones.style.animation = 'fadeIn 0.5s ease';
+    }
+    if (buscador) {
+      buscador.style.display = "block";
+    }
   }
 }
 
