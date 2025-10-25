@@ -1,15 +1,11 @@
-/* Importar fuentes futuristas */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
 
-/* Variables CSS futuristas */
 :root {
-  /* Tema oscuro (por defecto) */
   --primary-bg: #0a0a0a;
   --secondary-bg: #111111;
   --card-bg: rgba(15, 15, 15, 0.95);
   --glass-bg: rgba(0, 245, 255, 0.1);
   
-  /* Colores neón */
   --neon-cyan: #00f5ff;
   --neon-pink: #ff2d92;
   --neon-purple: #bf00ff;
@@ -17,38 +13,33 @@
   --neon-orange: #ff8c00;
   --neon-yellow: #ffff00;
   
-  /* Textos */
   --text-primary: #ffffff;
   --text-secondary: #00f5ff;
   --text-muted: #888888;
   
-  /* Efectos */
   --border-glow: rgba(0, 245, 255, 0.5);
   --shadow-neon: 0 0 20px var(--neon-cyan);
   --shadow-pink: 0 0 20px var(--neon-pink);
   --shadow-purple: 0 0 20px var(--neon-purple);
   --shadow-green: 0 0 20px var(--neon-green);
   
-  /* Gradientes futuristas */
   --gradient-cyber: linear-gradient(135deg, #00f5ff 0%, #bf00ff 100%);
   --gradient-neon: linear-gradient(45deg, #00f5ff, #ff2d92, #bf00ff);
   --gradient-energy: linear-gradient(90deg, #00f5ff 0%, #00ff41 50%, #00f5ff 100%);
 
-  --h-curso: 44px;          /* alto fijo de la pastilla de curso */
-  --lh-titulo: 1.25;        /* line-height del título */
-  --lines-titulo: 2;        /* cuántas líneas ocupa el título */
-  --lh-integrantes: 1.4;    /* line-height de integrantes */
-  --lines-integrantes: 2;   /* cuántas líneas ocupa integrantes */
+  --h-curso: 44px;
+  --lh-titulo: 1.25;
+  --lines-titulo: 2;
+  --lh-integrantes: 1.4;
+  --lines-integrantes: 2;
 }
 
-/* Variables para tema claro */
 :root.light-theme {
   --primary-bg: #f0f0f0;
   --secondary-bg: #ffffff;
   --card-bg: rgba(255, 255, 255, 0.95);
   --glass-bg: rgba(0, 206, 209, 0.1);
   
-  /* Colores para tema claro - Turquesa */
   --neon-cyan: #00e7eb;
   --neon-pink: #dd1b62;
   --neon-purple: #8712da;
@@ -56,25 +47,21 @@
   --neon-orange: #ff8e1d;
   --neon-yellow: #daa814;
   
-  /* Textos para tema claro */
   --text-primary: #333333;
   --text-secondary: #00CED1;
   --text-muted: #666666;
   
-  /* Efectos para tema claro - Turquesa */
   --border-glow: rgba(0, 206, 209, 0.3);
   --shadow-neon: 0 0 15px rgba(0, 206, 209, 0.2);
   --shadow-pink: 0 0 15px rgba(204, 17, 85, 0.2);
   --shadow-purple: 0 0 15px rgba(119, 0, 204, 0.2);
   --shadow-green: 0 0 15px rgba(0, 170, 34, 0.2);
   
-  /* Gradientes para tema claro - Turquesa */
   --gradient-cyber: linear-gradient(135deg, #00CED1 0%, #7700cc 100%);
   --gradient-neon: linear-gradient(45deg, #00CED1, #cc1155, #7700cc);
   --gradient-energy: linear-gradient(90deg, #00CED1 0%, #00aa22 50%, #00CED1 100%);
 }
 
-/* Reset y base */
 * {
   margin: 0;
   padding: 0;
@@ -90,7 +77,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Transiciones suaves para cambio de tema */
+
 * {
   transition: 
     background-color 0.3s ease,
@@ -99,7 +86,7 @@ body {
     box-shadow 0.3s ease;
 }
 
-/* Fondo futurista animado */
+
 body::before {
   content: '';
   position: fixed;
@@ -116,7 +103,7 @@ body::before {
   z-index: -1;
 }
 
-/* Fondo para tema claro */
+
 :root.light-theme body::before {
   background: 
     radial-gradient(circle at 20% 20%, rgba(0, 206, 209, 0.08) 0%, transparent 40%),
@@ -129,7 +116,7 @@ body::before {
   100% { opacity: 1; }
 }
 
-/* Header futurista */
+
 .futuristic-header {
   position: relative;
   height: 200px;
@@ -138,7 +125,7 @@ body::before {
   overflow: hidden;
 }
 
-/* Header para tema claro */
+
 :root.light-theme .futuristic-header {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
   border-bottom: 2px solid var(--neon-cyan);
@@ -204,7 +191,7 @@ body::before {
   }
 }
 
-/* Ajustes para tema claro */
+
 :root.light-theme .neon-text {
   color: #008B8D;
   text-shadow: 
@@ -244,7 +231,7 @@ body::before {
   50% { opacity: 1; }
 }
 
-/* Grid overlay futurista */
+
 .grid-overlay {
   position: absolute;
   top: 0;
@@ -259,7 +246,7 @@ body::before {
   z-index: 1;
 }
 
-/* Grid overlay para tema claro */
+
 :root.light-theme .grid-overlay {
   background-image: 
     linear-gradient(rgba(0, 206, 209, 0.08) 1px, transparent 1px),
@@ -271,7 +258,7 @@ body::before {
   100% { transform: translate(50px, 50px); }
 }
 
-/* Partículas animadas */
+
 .particles {
   position: absolute;
   width: 100%;
@@ -308,7 +295,7 @@ body::before {
   50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
 }
 
-/* Botón toggle de tema */
+
 .theme-toggle {
   position: absolute;
   top: 20px;
@@ -348,7 +335,7 @@ body::before {
   transition: all 0.3s ease;
 }
 
-/* Por defecto mostrar luna (tema oscuro) */
+
 .sun-icon {
   opacity: 0;
   rotate: 180deg;
@@ -359,7 +346,7 @@ body::before {
   rotate: 0deg;
 }
 
-/* En tema claro mostrar sol */
+
 :root.light-theme .sun-icon {
   opacity: 1;
   rotate: 0deg;
@@ -370,7 +357,7 @@ body::before {
   rotate: -180deg;
 }
 
-/* Navegación futurista */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -384,7 +371,7 @@ body::before {
   z-index: 100;
 }
 
-/* Navegación para tema claro */
+
 :root.light-theme .navbar {
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid rgba(0, 206, 209, 0.2);
@@ -398,7 +385,7 @@ body::before {
   align-items: center;
 }
 
-/* Botones cyber */
+
 .cyber-button {
   position: relative;
   background: rgba(0, 245, 255, 0.1);
@@ -447,7 +434,7 @@ body::before {
     inset 0 0 30px rgba(0, 245, 255, 0.2);
 }
 
-/* Botones cyber para tema claro */
+
 :root.light-theme .cyber-button {
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid var(--neon-cyan);
@@ -504,7 +491,7 @@ body::before {
   opacity: 0.3;
 }
 
-/* Buscador futurista */
+
 .cyber-search {
   position: relative;
 }
@@ -550,7 +537,7 @@ body::before {
   opacity: 0.3;
 }
 
-/* Buscador para tema claro */
+
 :root.light-theme #buscador {
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid var(--neon-cyan);
@@ -570,7 +557,7 @@ body::before {
   border-color: var(--neon-pink);
 }
 
-/* Contenedor principal */
+
 .container {
   max-width: 100%;
   margin: 0;
@@ -578,7 +565,7 @@ body::before {
   min-height: 100vh;
 }
 
-/* Grid de tarjetas futuristas */
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -586,7 +573,7 @@ body::before {
   padding: 20px 0;
 }
 
-/* Para pantallas muy anchas, cards aún más angostas */
+
 @media (min-width: 1400px) {
   .card-container {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -594,7 +581,7 @@ body::before {
   }
 }
 
-/* Para pantallas ultra anchas, máximo aprovechamiento del espacio */
+
 @media (min-width: 1800px) {
   .card-container {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -602,7 +589,7 @@ body::before {
   }
 }
 
-/* Tarjetas cyberpunk */
+
 .flip-card {
   background: transparent;
   width: 100%;
@@ -645,7 +632,7 @@ body::before {
 .flip-card-front {
   justify-content: space-between;
   align-items: center;
-  padding: 20px; /* Reducir de 25px a 20px */
+  padding: 20px; 
 }
 
 .flip-card-back {
@@ -656,7 +643,7 @@ body::before {
   text-align: center;
 }
 
-/* Quitar hover problemático - solo efecto sutil de elevación */
+
 .flip-card:hover {
   transform: translateY(-2px);
 }
@@ -668,7 +655,7 @@ body::before {
     inset 0 0 10px rgba(0, 245, 255, 0.05);
 }
 
-/* Efectos hover para tema claro */
+
 :root.light-theme .flip-card:hover .flip-card-front,
 :root.light-theme .flip-card:hover .flip-card-back {
   box-shadow: 
@@ -676,17 +663,17 @@ body::before {
     inset 0 0 10px rgba(0, 206, 209, 0.08);
 }
 
-/* Contenedor de curso futurista - más compacto */
+
 .curso-container {
   width: 100%;
   height: var(--h-curso) !important;
-  margin-bottom: 8px; /* Reducir de 15px a 8px */
+  margin-bottom: 8px; 
 }
 
 .curso-position {
   width: 100%;
   height: 100% !important;
-  line-height: calc(var(--h-curso) - 0px) !important; /* centra el texto vertical */
+  line-height: calc(var(--h-curso) - 0px) !important; 
   padding: 0 14px !important;
   box-sizing: border-box !important;
   border-width: 0 !important;
@@ -703,41 +690,41 @@ body::before {
   clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }
 
-/* Mejorar legibilidad del texto de categoría en modo claro */
+
 :root.light-theme .curso-position {
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Logo futurista - más compacto */
+
 #logo {
   width: 100%;
   max-width: 200px;
-  height: 100px; /* Reducir de 120px a 100px */
+  height: 100px; 
   object-fit: contain;
   border-radius: 10px;
-  margin: 8px 0; /* Reducir de 15px a 8px */
+  margin: 8px 0; 
   filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 10px rgba(0, 245, 255, 0.3));
   background: transparent;
   border: 1px solid rgba(0, 245, 255, 0.3);
 }
 
-/* Tipografía futurista - más compacta */
+
 h3 {
   font-family: "Orbitron", monospace;
-  font-size: 1.1rem; /* Reducir de 1.2rem a 1.1rem */
+  font-size: 1.1rem; 
   font-weight: 700;
-  margin: 8px 0; /* Reducir de 15px a 8px */
+  margin: 8px 0; 
   color: var(--text-primary);
   text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
-  line-height: 1.2; /* Reducir line-height */
+  line-height: 1.2; 
 }
 
 #integrantes {
-  font-size: 0.85rem; /* Reducir de 0.9rem a 0.85rem */
+  font-size: 0.85rem; 
   color: var(--text-secondary);
-  margin: 6px 0; /* Reducir de 10px a 6px */
-  line-height: 1.3; /* Reducir line-height */
+  margin: 6px 0; 
+  line-height: 1.3; 
   text-shadow: 0 0 5px rgba(0, 245, 255, 0.3);
 }
 
@@ -747,51 +734,6 @@ h3 {
   margin: 0;
   line-height: 1.2;
 }
-
-/* Botón girar futurista - ESTILOS ORIGINALES COMENTADOS PARA EVITAR CONFLICTOS */
-/* 
-.girar-button {
-  position: relative;
-  background: rgba(0, 245, 255, 0.1);
-  border: 2px solid var(--neon-cyan);
-  border-radius: 0;
-  padding: 10px 15px;
-  font-family: "Orbitron", monospace;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--neon-cyan);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
-}
-*/
-
-/* Efectos ::before comentados para evitar interferencia
-.girar-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.girar-button:hover::before {
-  left: 100%;
-}
-*/
-
-/* Hover original comentado - se usa el hover nuevo más abajo
-.girar-button:hover {
-  box-shadow: 
-    0 0 20px var(--neon-cyan),
-    inset 0 0 20px rgba(0, 245, 255, 0.1);
-  transform: translateY(-2px);
-}
-*/
 
 .ubicacion-boton {
   width: 100%;
@@ -805,7 +747,7 @@ h3 {
   padding: 12px 20px;
 }
 
-/* Colores de categoría futuristas */
+
 .Social {
   border-color: var(--neon-pink);
   box-shadow: 0 0 30px rgba(255, 45, 146, 0.2);
@@ -856,7 +798,7 @@ h3 {
   box-shadow: 0 0 20px var(--neon-cyan);
 }
 
-/* Estilos de Educación para tema claro */
+
 :root.light-theme .Educación {
   border-color: #008B8D;
   box-shadow: 0 0 30px rgba(0, 139, 141, 0.3);
@@ -867,7 +809,7 @@ h3 {
   box-shadow: 0 0 20px #008B8D;
 }
 
-/* Scroll button futurista */
+
 .cyber-scroll-btn {
   position: fixed;
   bottom: 30px;
@@ -924,7 +866,7 @@ h3 {
   opacity: 0.5;
 }
 
-/* Modal futurista */
+
 .cyber-modal {
   display: none;
   position: fixed;
@@ -1012,7 +954,7 @@ h3 {
   100% { opacity: 0.3; }
 }
 
-/* Loader futurista */
+
 .cyber-loader {
   display: flex;
   flex-direction: column;
@@ -1074,13 +1016,13 @@ h3 {
   50% { opacity: 1; }
 }
 
-/* Animaciones adicionales */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Descripción de tarjeta */
+
 #descCard {
   font-size: 0.95rem;
   line-height: 1.6;
@@ -1095,7 +1037,66 @@ h3 {
   text-shadow: 0 0 10px var(--neon-cyan);
 }
 
-/* Estados especiales */
+
+@media (max-width: 768px) {
+  .flip-card-back {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px !important;
+    overflow: hidden !important;
+  }
+  
+  .flip-card-back h3 {
+    flex-shrink: 0;
+    margin-bottom: 10px;
+  }
+  
+  #descCard {
+    flex: 1;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    max-height: 200px;
+    padding-right: 10px;
+    margin: 10px 0;
+    
+    
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-cyan) rgba(0, 245, 255, 0.1);
+  }
+  
+  
+  #descCard::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #descCard::-webkit-scrollbar-track {
+    background: rgba(0, 245, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  #descCard::-webkit-scrollbar-thumb {
+    background: var(--neon-cyan);
+    border-radius: 10px;
+    box-shadow: 0 0 6px var(--neon-cyan);
+  }
+  
+  #descCard::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-pink);
+    box-shadow: 0 0 8px var(--neon-pink);
+  }
+  
+  .flip-card-back p:not(#descCard) {
+    flex-shrink: 0;
+    margin-top: 10px;
+  }
+  
+  .flip-card-back button {
+    flex-shrink: 0;
+    margin-top: 10px;
+  }
+}
+
+
 .empty-state, .error-state, .no-results {
   display: flex;
   flex-direction: column;
@@ -1132,7 +1133,7 @@ h3 {
   transform: translateY(-3px);
 }
 
-/* Responsividad */
+
 @media (max-width: 768px) {
   .neon-text {
     font-size: 2.5rem;
@@ -1156,15 +1157,15 @@ h3 {
   .card-container {
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 15px;
-    margin-top: 20px; /* Margen normal sin navbar fija */
+    margin-top: 20px; 
   }
   
-  /* Ocultar navbar tradicional en móvil */
+  
   .navbar {
     display: none !important;
   }
   
-  /* Botón de filtros para móvil */
+  
   .mobile-filter-btn {
     display: flex !important;
     position: fixed;
@@ -1193,7 +1194,7 @@ h3 {
     transform: translateY(-5px);
   }
   
-  /* Efecto de brillo para el botón de filtros */
+  
   .mobile-filter-btn::before {
     content: '';
     position: absolute;
@@ -1212,7 +1213,7 @@ h3 {
     opacity: 0.5;
   }
   
-  /* Drawer/Modal para filtros en móvil */
+  
   .mobile-filters-drawer {
     position: fixed;
     top: 0;
@@ -1225,7 +1226,7 @@ h3 {
     align-items: flex-end;
   }
   
-  /* Mostrar drawer cuando está abierto */
+  
   .mobile-filters-drawer.mobile-drawer-open {
     display: flex !important;
   }
@@ -1286,7 +1287,7 @@ h3 {
     margin-bottom: 25px;
   }
   
-  /* Botones de categoría en móvil */
+  
   .mobile-filters-grid .cyber-button {
     padding: 12px 8px;
     font-size: 0.85rem;
@@ -1310,7 +1311,7 @@ h3 {
     margin-top: 15px;
   }
   
-  /* Estilo especial para el buscador móvil */
+  
   .mobile-search .cyber-search {
     background: rgba(0, 245, 255, 0.1);
     border: 2px solid var(--neon-cyan);
@@ -1339,30 +1340,30 @@ h3 {
     border-color: var(--neon-cyan);
   }
   
-  /* Optimizar espaciado interno de las tarjetas en móvil */
+  
   .flip-card-front {
-    padding: 15px !important; /* Reducir padding de 25px a 15px */
+    padding: 15px !important; 
   }
   
-  /* Reducir espacios entre elementos */
+  
   .curso-container {
-    margin-bottom: 8px !important; /* Reducir de 15px a 8px */
+    margin-bottom: 8px !important; 
   }
   
   #logo {
-    height: 80px !important; /* Reducir altura del logo de 120px a 80px */
-    margin: 8px 0 !important; /* Reducir márgenes de 15px a 8px */
+    height: 80px !important; 
+    margin: 8px 0 !important; 
   }
   
   .flip-card-front h3 {
-    font-size: 1rem !important; /* Reducir tamaño de fuente */
-    margin: 8px 0 !important; /* Reducir márgenes de 15px a 8px */
+    font-size: 1rem !important; 
+    margin: 8px 0 !important; 
     line-height: 1.2 !important;
   }
   
   #integrantes {
-    font-size: 0.8rem !important; /* Reducir tamaño de fuente */
-    margin: 8px 0 !important; /* Reducir márgenes de 10px a 8px */
+    font-size: 0.8rem !important; 
+    margin: 8px 0 !important; 
     line-height: 1.3 !important;
   }
   
@@ -1382,15 +1383,15 @@ h3 {
   }
   
   .flip-card {
-    height: 380px !important; /* Reducir altura para acomodar mejor el contenido */
+    height: 380px !important; 
   }
   
-  /* MÓVIL: Ajustar contenedor del botón */
+  
   .ubicacion-boton {
-    padding: 10px !important; /* Reducir padding en móvil */
+    padding: 10px !important; 
   }
   
-  /* MÓVIL: Estilo circular compacto para el botón */
+  
   .girar-button {
     background: rgba(0, 0, 0, 0.9) !important;
     border: 2px solid var(--neon-cyan) !important;
@@ -1437,7 +1438,7 @@ h3 {
   .card-container {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 15px;
-    margin-top: 20px; /* Margen normal */
+    margin-top: 20px; 
   }
   
   .modal-content {
@@ -1450,7 +1451,7 @@ h3 {
     gap: 10px;
   }
   
-  /* Ocultar navbar también en móviles muy pequeños */
+  
   .navbar {
     display: none !important;
   }
@@ -1460,31 +1461,40 @@ h3 {
     justify-content: center;
   }
   
-  /* Optimización extra para móviles muy pequeños */
+  
   .flip-card-front {
-    padding: 12px !important; /* Aún menos padding */
+    padding: 12px !important; 
+  }
+  
+  .flip-card-back {
+    padding: 15px !important;
+  }
+  
+  
+  #descCard {
+    max-height: 150px !important;
   }
   
   .curso-container {
-    margin-bottom: 5px !important; /* Mínimo margen */
+    margin-bottom: 5px !important; 
   }
   
   #logo {
-    height: 70px !important; /* Logo aún más pequeño */
-    margin: 5px 0 !important; /* Mínimos márgenes */
+    height: 70px !important; 
+    margin: 5px 0 !important; 
   }
   
   .flip-card-front h3 {
-    font-size: 0.9rem !important; /* Texto más pequeño */
+    font-size: 0.9rem !important; 
     margin: 5px 0 !important;
   }
   
   #integrantes {
-    font-size: 0.75rem !important; /* Texto más pequeño */
+    font-size: 0.75rem !important; 
     margin: 5px 0 !important;
   }
   
-  /* Botón aún más pequeño para móviles pequeños */
+  
   .girar-button {
     width: 40px !important;
     height: 40px !important;
@@ -1494,11 +1504,11 @@ h3 {
   }
   
   .ubicacion-boton {
-    padding: 8px !important; /* Menos padding */
+    padding: 8px !important; 
   }
 }
 
-/* Elementos adicionales */
+
 #mg-top {
   margin-top: 0;
   font-size: 1.2rem;
@@ -1528,13 +1538,6 @@ h3 {
   object-fit: contain !important;
 }
 
-
-/* Cambiar clases button-55 por cyber-button para compatibilidad */
-.button-55 {
-  /* Redirigir a cyber-button */
-}
-
-/* Mejorar texto en negrita */
 b, strong {
   color: var(--neon-cyan);
   font-weight: 700;
@@ -1543,37 +1546,35 @@ b, strong {
 
 
 
-/* ================== FIX: separar acento UI vs categoría Educación ================== */
-/* 1) Definimos variables exclusivas para la categoría Educación (modo oscuro y claro) */
 :root{
-  --edu-color: #1BB3BD;         /* distinto al --neon-cyan global */
-  --edu-ink:   #062e30;         /* texto legible sobre --edu-color */
+  --edu-color: #1BB3BD;         
+  --edu-ink:   #062e30;         
   --edu-glow:  rgba(27,179,189,.32);
 }
 :root.light-theme{
-  --edu-color: #0FA4AE;         /* un toque más sobrio en claro */
+  --edu-color: #0FA4AE;         
   --edu-ink:   #053336;
   --edu-glow:  rgba(15,164,174,.28);
 }
 
-/* 2) Aplicamos esas variables SOLO a la categoría Educación */
+
 .Educación{
   border-color: var(--edu-color) !important;
   box-shadow: 0 0 30px var(--edu-glow) !important;
 }
 .Educación-background{
   background: var(--edu-color) !important;
-  /* antes heredaba el color del UI (neon-cyan); ahora fijamos la tinta */
+  
   color: var(--edu-ink) !important;
-  text-shadow: none !important;                /* mejora legibilidad */
+  text-shadow: none !important;                
   box-shadow: 0 0 20px var(--edu-glow) !important;
 }
 
-/* 3) Aseguramos contraste en la pastilla superior y el botón “+” cuando sean de Educación */
+
 .curso-position.Educación-background #curso{
   color: var(--edu-ink) !important;
 }
-/* Forzar colores consistentes para TODOS los botones de categoría */
+
 .girar-button[class*="-background"] {
   color: var(--neon-cyan) !important;
   border-color: var(--neon-cyan) !important;
@@ -1585,82 +1586,24 @@ b, strong {
   background: var(--neon-cyan) !important;
 }
 
-/* 4) Si algún texto encima del fondo educación quedara muy claro, lo reforzamos */
+
 .Educación .flip-card-front h3,
 .Educación .flip-card-front #integrantes{
-  text-shadow: none; /* sin glow cian global */
+  text-shadow: none; 
 }
 
-/* ================== (opcional) suavizar el cyan global sin tocar la categoría ================== */
-:root{ --neon-cyan: #85E9EC; }             /* tu valor actual “general/acento” */
-:root.light-theme{ --neon-cyan: #00CED1; } /* acento en claro */
+:root{ --neon-cyan: #85E9EC; }             
+:root.light-theme{ --neon-cyan: #00CED1; } 
 
-/* === REGLA GLOBAL COMENTADA - Puede interferir con desktop ===
-.flip-card .ubicacion-boton {
-  display: flex;
-  visibility: visible;
-  opacity: 1;
-  position: relative;
-  z-index: 50;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  margin-top: auto;
-  padding: 10px;
-}
-*/
-
-/* REGLAS GLOBALES COMENTADAS - Causaban conflicto con desktop
-.flip-card .girar-button {
-  display: flex;
-  visibility: visible;
-  opacity: 1;
-  position: relative;
-  z-index: 51;
-  background: rgba(0, 0, 0, 0.9);
-  border: 2px solid var(--neon-cyan);
-  color: var(--neon-cyan);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
-  transition: all 0.3s ease;
-  clip-path: none;
-  padding: 0;
-  margin: 0;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.flip-card .girar-button:hover {
-  background: var(--neon-cyan);
-  color: #000;
-  transform: scale(1.1);
-  box-shadow: 0 0 25px var(--neon-cyan);
-}
-
-.flip-card .girar-button svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
-*/
-
-/* Título: siempre misma altura (2 líneas) */
 .flip-card-front h3{
   line-height: var(--lh-titulo) !important;
   min-height: calc(var(--lines-titulo) * 1em * var(--lh-titulo)) !important;
   display: -webkit-box !important;
   -webkit-line-clamp: var(--lines-titulo);
+  line-clamp: var(--lines-titulo);
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-shadow: none !important;            /* evita “engordar” el alto visual */
+  text-shadow: none !important;            
 }
 
 .flip-card-front #integrantes{
@@ -1668,16 +1611,12 @@ b, strong {
   min-height: calc(var(--lines-integrantes) * 1em * var(--lh-integrantes)) !important;
   display: -webkit-box !important;
   -webkit-line-clamp: var(--lines-integrantes);
+  line-clamp: var(--lines-integrantes);
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-shadow: none !important;
 }
 
-/* =============================================
-   SOLUCION DEFINITIVA - BOTON VISIBLE MOBILE
-   ============================================= */
-
-/* Ocultar botón de filtros móvil en desktop */
 .mobile-filter-btn {
   display: none;
 }
@@ -1686,25 +1625,24 @@ b, strong {
   display: none;
 }
 
-/* Estilos base para DESKTOP - más compacto */
 .ubicacion-boton {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
   margin-top: auto;
-  padding: 10px; /* Reducir de 15px a 10px */
+  padding: 10px; 
   position: relative;
   z-index: 100;
 }
 
-/* Botón para desktop - tamaño fijo para evitar cortes */
+
 .girar-button {
   position: relative;
   background: rgba(0, 245, 255, 0.1);
   border: 2px solid var(--neon-cyan);
   border-radius: 8px;
-  padding: 0; /* Sin padding para control total del tamaño */
+  padding: 0; 
   font-family: "Orbitron", monospace;
   font-weight: 700;
   font-size: 1rem;
@@ -1718,24 +1656,24 @@ b, strong {
   visibility: visible;
   opacity: 1;
   z-index: 101;
-  width: 50px !important; /* Tamaño fijo */
-  height: 50px !important; /* Tamaño fijo */
+  width: 50px !important; 
+  height: 50px !important; 
   min-width: 50px;
   min-height: 50px;
-  box-sizing: border-box; /* Incluir borde en el tamaño */
+  box-sizing: border-box; 
 }
 
-/* Asegurar que el SVG no se corte */
+
 .girar-button svg {
   width: 20px !important;
   height: 20px !important;
   stroke: currentColor !important;
   fill: none !important;
   stroke-width: 2 !important;
-  flex-shrink: 0; /* No permitir que se encoja */
+  flex-shrink: 0; 
 }
 
-/* Hover para desktop */
+
 .girar-button:hover {
   background: var(--neon-cyan) !important;
   color: #000 !important;
@@ -1743,9 +1681,9 @@ b, strong {
   transform: translateY(-2px);
 }
 
-/* Reglas duplicadas eliminadas - se mantienen las de arriba */
 
-/* Clases auxiliares para JavaScript */
+
+
 .visible-container {
   display: flex !important;
   visibility: visible !important;
