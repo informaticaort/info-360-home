@@ -5,6 +5,7 @@ let datos = [];
 const excelUrls = {
   2024: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTG4QwspZOrk3UP6zhZVUcb4uSZxEUZGPE4Pda-WXNfiGYP11rftONqyU9SXJ8tJFBwv0SH-O0v0Py3/pub?gid=1832559583&single=true&output=tsv",
   2025: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTAe4sWUPODv6VHupXs6PVYVr5Fj_uMcdnsVa5KpW12t-LOWYifumX07vgXntmp3_Gj5X9HLeXywtOC/pub?gid=1832559583&single=true&output=tsv",
+  2026: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWZ_H1Qva3Sm8ij0fi9pSnOtOcUq4Q9q8v_yxUiy3ZXSEgLR6KBM1Bypczd3XZbSr7t0uCtTr48U0h/pub?gid=1832559583&single=true&output=tsv"
 };
 
 // Función para toggle de tema
