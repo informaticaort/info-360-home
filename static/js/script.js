@@ -238,7 +238,7 @@ async function fetchTSV() {
     showLoader();
     
     const urlParams = new URLSearchParams(window.location.search);
-    const year = urlParams.get("year") || '2025';
+    const year = urlParams.get("year") || '2026';
     
     const response = await fetch(excelUrls[year]);
     
