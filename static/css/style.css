@@ -705,7 +705,7 @@ body::before {
   border-radius: 10px;
   margin: 8px 0; 
   filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 10px rgba(0, 245, 255, 0.3));
-  background: transparent;
+  background: #ffffff ;
   border: 1px solid rgba(0, 245, 255, 0.3);
 }
 
