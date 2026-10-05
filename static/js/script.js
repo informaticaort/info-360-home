@@ -91,15 +91,83 @@ function createParticles() {
 function initializeHoverEffects() {
   // Agregar efectos de glow a los botones
   const buttons = document.querySelectorAll('.cyber-button');
-  buttons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-      button.style.boxShadow = '0 0 30px var(--neon-cyan), inset 0 0 30px rgba(0, 245, 255, 0.1)';
-    });
-    
-    button.addEventListener('mouseleave', () => {
-      if (!button.classList.contains('seleccionado')) {
-        button.style.boxShadow = '';
-      }
+  buttons.forEach(addHoverEffect);
+}
+
+function addHoverEffect(button) {
+  button.addEventListener('mouseenter', () => {
+    button.style.boxShadow = '0 0 30px var(--neon-cyan), inset 0 0 30px rgba(0, 245, 255, 0.1)';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    if (!button.classList.contains('seleccionado')) {
+      button.style.boxShadow = '';
+    }
+  });
+}
+
+// Íconos conocidos por categoría (clave normalizada: primera palabra, minúsculas, sin tildes)
+const iconosCategorias = {
+  educacion: '🎓',
+  impacto: '🌍',
+  salud: '⚕️',
+  social: '👥',
+  'e-commerce': '🛒',
+  ecommerce: '🛒'
+};
+
+function normalizarTexto(texto) {
+  return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+
+function iconoCategoria(categoria) {
+  const clave = normalizarTexto(categoria.split(' ')[0]);
+  return iconosCategorias[clave] || '📁';
+}
+
+// ID de botón a partir del nombre de la categoría
+function idCategoria(categoria) {
+  if (categoria === 'Todos') return 'Todos';
+  return 'cat-' + normalizarTexto(categoria).replace(/[^a-z0-9]+/g, '-');
+}
+
+function crearBotonCategoria(categoria, esMovil) {
+  const boton = document.createElement('button');
+  boton.id = (esMovil ? 'mobile-' : '') + idCategoria(categoria);
+  boton.className = 'cyber-button';
+  boton.setAttribute('aria-pressed', 'false');
+  boton.innerHTML = `
+    <span class="button-content">
+      <span class="button-icon">${iconoCategoria(categoria)}</span>
+      <span class="button-text"></span>
+    </span>
+    ${esMovil ? '' : '<div class="button-glow"></div>'}
+  `;
+  boton.querySelector('.button-text').textContent = categoria;
+  boton.addEventListener('click', () => {
+    mostrarCategoria(categoria);
+    if (esMovil) closeMobileFilters();
+  });
+  addHoverEffect(boton);
+  return boton;
+}
+
+// Generar botones de categorías a partir de los datos cargados
+function generarBotonesCategorias() {
+  const categorias = [...new Set(datos.map(item => item.Categoria))]
+    .sort((a, b) => a.localeCompare(b, 'es'));
+
+  const contenedores = [
+    { el: document.querySelector('.nav-buttons'), esMovil: false },
+    { el: document.querySelector('.mobile-filters-grid'), esMovil: true }
+  ];
+
+  contenedores.forEach(({ el, esMovil }) => {
+    if (!el) return;
+    // Quitar botones generados previamente (se conserva "Todos")
+    el.querySelectorAll('.cyber-button[id*="cat-"]').forEach(btn => btn.remove());
+    categorias.forEach(categoria => {
+      el.appendChild(crearBotonCategoria(categoria, esMovil));
     });
   });
 }
@@ -260,12 +328,13 @@ async function fetchTSV() {
       Curso: row[1] || '',
       Nombre: row[2] || 'Proyecto sin título',
       Descripcion: row[3] || 'Sin descripción disponible',
-      Categoria: row[5] || 'General',
+      Categoria: (row[5] || '').trim() || 'General',
       Logo: row[6] || 'https://via.placeholder.com/200x120?text=Logo',
       Integrantes: row[7] || 'No especificado'
     })).filter(item => item.Nombre && item.Nombre !== 'Proyecto sin título');
     
     hideLoader();
+    generarBotonesCategorias();
     mostrarBotones();
     mostrarTodos();
     
@@ -375,9 +444,7 @@ function girarTarjeta(button) {
 function mostrarCategoria(categoria) {
   updateActiveButton(categoria);
   
-  const categoriaData = datos.filter(item => 
-    item.Categoria.split(" ")[0].includes(categoria)
-  );
+  const categoriaData = datos.filter(item => item.Categoria === categoria);
   
   renderProjects(categoriaData);
 }
@@ -474,14 +541,15 @@ function updateActiveButton(activeCategory) {
   
   if (activeCategory) {
     // Actualizar botón desktop
-    const botonActivo = document.getElementById(activeCategory);
+    const idBoton = idCategoria(activeCategory);
+    const botonActivo = document.getElementById(idBoton);
     if (botonActivo) {
       botonActivo.classList.add("seleccionado");
       botonActivo.style.boxShadow = '0 0 30px var(--neon-cyan), inset 0 0 30px rgba(0, 245, 255, 0.2)';
     }
-    
+
     // Actualizar botón móvil correspondiente
-    const botonMovil = document.getElementById('mobile-' + activeCategory);
+    const botonMovil = document.getElementById('mobile-' + idBoton);
     if (botonMovil) {
       botonMovil.classList.add("seleccionado");
     }
