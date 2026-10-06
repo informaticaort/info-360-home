@@ -788,22 +788,22 @@ h3 {
   box-shadow: 0 0 20px var(--neon-orange);
 }
 
-.economia {
+.Economia {
   border-color: var(--neon-orange);
   box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
 }
 
-.economia-background {
+.Economia-background {
   background: var(--neon-green);
   box-shadow: 0 0 20px var(--neon-green);
 }
 
-.entretenimiento {
+.Entretenimiento {
   border-color: var(--neon-green);
   box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
 }
 
-.entretenimiento-background {
+.Entretenimiento-background {
   background: var(--neon-orange);
   box-shadow: 0 0 20px var(--neon-orange);
 }
