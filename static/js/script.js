@@ -113,7 +113,10 @@ const iconosCategorias = {
   salud: '⚕️',
   social: '👥',
   'e-commerce': '🛒',
-  ecommerce: '🛒'
+  ecommerce: '🛒',
+  economía: '🛒',
+  entretenimiento: '🍿'
+
 };
 
 function normalizarTexto(texto) {
