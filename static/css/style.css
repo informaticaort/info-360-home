@@ -778,12 +778,32 @@ h3 {
   box-shadow: 0 0 20px var(--neon-green);
 }
 
+.E-Commerce {
+  border-color: var(--neon-orange);
+  box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
+}
+
+.E-Commerce-background {
+  background: var(--neon-orange);
+  box-shadow: 0 0 20px var(--neon-orange);
+}
+
 .economía {
   border-color: var(--neon-orange);
   box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
 }
 
 .economía-background {
+  background: var(--neon-green);
+  box-shadow: 0 0 20px var(--neon-green);
+}
+
+.entretenimiento {
+  border-color: var(--neon-green);
+  box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
+}
+
+.entretenimiento-background {
   background: var(--neon-orange);
   box-shadow: 0 0 20px var(--neon-orange);
 }
