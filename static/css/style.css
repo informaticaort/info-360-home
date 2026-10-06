@@ -788,18 +788,18 @@ h3 {
   box-shadow: 0 0 20px var(--neon-orange);
 }
 
-.Economia {
-  border-color: var(--neon-orange);
-  box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
+.Economía {
+  border-color: var(--neon-green);
+  box-shadow: 0 0 30px rgba(9, 255, 0, 0.2);
 }
 
-.Economia-background {
+.Economía-background {
   background: var(--neon-green);
   box-shadow: 0 0 20px var(--neon-green);
 }
 
 .Entretenimiento {
-  border-color: var(--neon-green);
+  border-color: var(--neon-orange);
   box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
 }
 

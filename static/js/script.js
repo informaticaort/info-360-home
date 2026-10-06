@@ -114,7 +114,7 @@ const iconosCategorias = {
   social: '👥',
   'e-commerce': '🛒',
   ecommerce: '🛒',
-  economia: '💵',
+  economía: '💵',
   entretenimiento: '🍿'
 
 };
