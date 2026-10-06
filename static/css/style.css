@@ -788,12 +788,12 @@ h3 {
   box-shadow: 0 0 20px var(--neon-orange);
 }
 
-.economía {
+.economia {
   border-color: var(--neon-orange);
   box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
 }
 
-.economía-background {
+.economia-background {
   background: var(--neon-green);
   box-shadow: 0 0 20px var(--neon-green);
 }
